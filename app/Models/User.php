@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -18,7 +19,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
+        'username',
+        //'email',
         'password',
     ];
 
@@ -29,7 +31,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
+        //'remember_token',
     ];
 
     /**
@@ -40,8 +42,24 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
+            //'email_verified_at' => 'datetime',
             'password' => 'hashed',
+        ];
+    }
+
+    public function office(): BelongsTo
+    {
+        return $this->belongsTo(Office::class);
+    }
+
+    public function getRoles()
+    {
+        return [
+            'Administrator',
+            'Executive',
+            'GSO Administrator',
+            'GSO Encoder',
+            'Regular User'
         ];
     }
 }
