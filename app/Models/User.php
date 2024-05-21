@@ -52,14 +52,8 @@ class User extends Authenticatable
         return $this->belongsTo(Office::class);
     }
 
-    public function getRoles()
+    public function role(): BelongsTo
     {
-        return [
-            'Administrator',
-            'Executive',
-            'GSO Administrator',
-            'GSO Encoder',
-            'Regular User'
-        ];
+        return $this->belongsTo(Role::class);
     }
 }

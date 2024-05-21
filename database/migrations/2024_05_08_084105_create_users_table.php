@@ -17,11 +17,14 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
+            $table->foreignId('role_id')
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
             $table->string('name', 100);
             $table->string('username', 20)->unique();
             //$table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('role');
             //$table->rememberToken();
             $table->timestamps();
         });
