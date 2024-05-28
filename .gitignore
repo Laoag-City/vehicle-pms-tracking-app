@@ -3,6 +3,11 @@
 /public/build
 /public/hot
 /public/storage
+
+/public/semantic/src
+/public/semantic/tasks
+/public/gulpfile.js
+
 /storage/*.key
 /vendor
 .env
