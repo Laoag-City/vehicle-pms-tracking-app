@@ -22,24 +22,43 @@
                     <i class="home icon"></i>
                     Home
                 </a>
-
-                <a href="#" class="item" onclick="event.preventDefault(); document.getElementById('logout_form').submit();">
-                    <i class="sign out icon"></i>
-                    Log Out
-                </a>
-
-                <form id="logout_form" action="{{ url('/logout') }}" method="POST" class="hidden">
-                    @csrf
-    			</form>
             @endauth
         </div>
 
         <div class="pusher">
             <div class="ui container">
-                <h2 id="content-header" class="ui top attached header">{{ $title ?? "" }}</h2>
+                <div class="ui large attached menu">
+                    @auth
+                        <div class="item">
+                            <x-actions.button id="menu-button" class="basic icon">
+                                <i class="list ul icon"></i>
+                            </x-actions.button>
+                        </div>
+                    @endauth
+
+                    <div id="content-header" class="item">
+                        <h3 class="ui header">{{ $title ?? "" }}</h3>
+                    </div>
+
+                    @auth
+                        <div class="right menu">
+                            <div class="item">
+                                <x-actions.button id="menu-button" class="basic icon" onclick="event.preventDefault(); document.getElementById('logout_form').submit();">
+                                    <i class="sign out icon"></i>
+                                </x-actions.button>
+                            </div>
+            
+                            <form id="logout_form" action="{{ url('/logout') }}" method="POST" class="hidden">
+                                @csrf
+                            </form>
+                        </div>
+                    @endauth
+                </div>
 
                 <div id="content" class="ui attached segment">
-                    {{ $slot }}
+                    <div class="ui centered grid container">
+                        {{ $slot }}
+                    </div>
                 </div>
             </div>
         </div>

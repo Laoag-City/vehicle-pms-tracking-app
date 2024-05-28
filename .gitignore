@@ -6,7 +6,7 @@
 
 /public/semantic/src
 /public/semantic/tasks
-/public/gulpfile.js
+/public/semantic/gulpfile.js
 
 /storage/*.key
 /vendor

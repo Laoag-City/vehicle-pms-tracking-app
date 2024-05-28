@@ -9,9 +9,9 @@ Route::middleware('guest')->controller(AuthenticationController::class)->group(f
 });
 
 Route::middleware('auth')->group(function() {
-    Route::get('/', function () {
-        return view('welcome');
-    });
+    Route::view('/', 'welcome')->name('home');
+
+    
 
     Route::post('/logout', [AuthenticationController::class, 'logOut']);
 });

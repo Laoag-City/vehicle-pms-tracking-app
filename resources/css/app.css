@@ -2,3 +2,8 @@ body>.pusher
 {
 	padding-top: 12px;
 }
+
+#content-header::before
+{
+	width: 0;
+}
