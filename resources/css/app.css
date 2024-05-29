@@ -1,6 +1,16 @@
+body
+{
+	background-color: #f5f5f5 !important;
+}
+
 body>.pusher
 {
 	padding-top: 12px;
+}
+
+#content
+{
+	min-height: 83vh;
 }
 
 #content-header::before

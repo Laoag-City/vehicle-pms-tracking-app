@@ -5,7 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="Russell James F. Bello">
 
-        <title>Vehicle PMS Tracking App {{ isset($title) ? "|$title" :  "" }}</title>
+        @php
+            $title = "Vehicle PMS Tracking App " . (isset($title) ? " | $title" :  "");
+            $current_url = url()->current();
+        @endphp
+
+        <title>{{ $title }}</title>
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -18,9 +23,14 @@
     <body>
         <div class="ui left vertical inverted labeled icon sidebar menu">
             @auth
-                <a class="item">
+                <a class="item {{ $current_url == route('home') ? 'active' : '' }}" href="{{ route('home') }}">
                     <i class="home icon"></i>
                     Home
+                </a>
+
+                <a class="item {{ $current_url == route('vehicles') ? 'active' : '' }}" href="{{ route('vehicles') }}">
+                    <i class="car icon"></i>
+                    Vehicles
                 </a>
             @endauth
         </div>
@@ -37,7 +47,15 @@
                     @endauth
 
                     <div id="content-header" class="item">
-                        <h3 class="ui header">{{ $title ?? "" }}</h3>
+                        <h3 class="ui header">
+                            <i class="icons">
+                                <i class="car side icon"></i>
+                                <i class="top right corner wrench icon"></i>
+                            </i>
+                            <div class="content">
+                                {{ $title }}
+                            </div>
+                        </h3>
                     </div>
 
                     @auth
@@ -58,6 +76,19 @@
                 <div id="content" class="ui attached segment">
                     <div class="ui centered grid container">
                         {{ $slot }}
+                    </div>
+                </div>
+
+                <div class="ui bottom attached mini borderless menu">
+                    <div class="item">
+                        <i class="copyright outline icon"></i>
+                        {{ date('Y', strtotime('now')) }}. All rights reserved.
+                    </div>
+
+                    <div class="right menu">
+                        <div class="item" data-tooltip="Proudly developed by R. J. Bello." data-variation="mini">
+                            <i class="code icon"></i>
+                        </div>
                     </div>
                 </div>
             </div>
