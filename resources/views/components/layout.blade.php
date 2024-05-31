@@ -40,7 +40,7 @@
                 <div class="ui large attached menu">
                     @auth
                         <div class="item">
-                            <x-actions.button id="menu-button" class="basic icon">
+                            <x-actions.button id="menu-button" class="basic icon" title="Toggle Menu">
                                 <i class="list ul icon"></i>
                             </x-actions.button>
                         </div>
@@ -61,7 +61,7 @@
                     @auth
                         <div class="right menu">
                             <div class="item">
-                                <x-actions.button id="menu-button" class="basic icon" onclick="event.preventDefault(); document.getElementById('logout_form').submit();">
+                                <x-actions.button id="menu-button" class="basic icon" title="Log Out" onclick="event.preventDefault(); document.getElementById('logout_form').submit();">
                                     <i class="sign out icon"></i>
                                 </x-actions.button>
                             </div>

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enum\Role as EnumRole;
 use App\Models\Component;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -19,13 +20,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Role::insert([
-            ['role' => 'Administrator'],
-            ['role' => 'Executive'],
-            ['role' => 'GSO Administrator'],
-            ['role' => 'GSO Encoder'],
-            ['role' => 'Regular User'],
-        ]);
+        $roles = [];
+        foreach(EnumRole::cases() as $role)
+            $roles[] = ['role' => $role->value];
+
+        Role::insert($roles);
 
         Office::insert([
             ['name' => 'City Mayor\'s Office', 'abbr' => 'CMO'],
