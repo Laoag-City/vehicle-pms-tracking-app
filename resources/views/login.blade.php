@@ -1,7 +1,7 @@
 <x-layout>
     <x-slot:title>Log In</x-slot>
 
-    <div class="four wide column">
+    <div class="four wide centered column">
         <form action="{{ url()->current() }}" method="POST" class="ui form">
             @csrf
     

@@ -14,4 +14,14 @@ class VehicleMake extends Model
     {
         return $this->hasMany(Vehicle::class);
     }
+
+    public function selectName()
+    {
+        return $this->make;
+    }
+
+    public function selectValue()
+    {
+        return $this->id;
+    }
 }

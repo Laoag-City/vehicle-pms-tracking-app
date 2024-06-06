@@ -19,4 +19,14 @@ class Office extends Model
     {
         return $this->HasMany(Vehicle::class);
     }
+
+    public function selectName()
+    {
+        return $this->name;
+    }
+
+    public function selectValue()
+    {
+        return $this->id;
+    }
 }

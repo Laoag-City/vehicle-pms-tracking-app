@@ -4,11 +4,13 @@
     'value',
     'type' => 'text',
     'error' => "",
-    'placeholder',
-    'required' => false
+    'placeholder' => "",
+    'required' => false,
+    'min' => null,
+    'max' => null
 ])
 
-<div {{ $attributes->class(['field', 'error' => !!$error ]) }} {!! !$error ?: 'data-tooltip="' . $error . '"' !!}>
+<div {{ $attributes->class(['field', 'error' => !!$error , 'no-display' => $type == 'hidden']) }} {!! !$error ?: 'data-tooltip="' . $error . '"' !!}>
     <label for="{{ $name }}">
         {{ $label }}
     </label>
@@ -18,6 +20,9 @@
         type="{{ $type }}" 
         name="{{ $name }}"
         value="{{ $value }}"
+        placeholder="{{ $placeholder }}"
+        min="{{ $min }}"
+        max="{{ $max }}"
         {{ !$required ?: 'required' }}
     >
 </div>

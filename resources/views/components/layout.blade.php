@@ -21,7 +21,7 @@
     </head>
 
     <body>
-        <div class="ui left vertical inverted labeled icon sidebar menu">
+        <div class="ui left mini vertical inverted labeled icon sidebar menu">
             @auth
                 <a class="item {{ $current_url == route('home') ? 'active' : '' }}" href="{{ route('home') }}">
                     <i class="home icon"></i>
@@ -32,6 +32,12 @@
                     <i class="car icon"></i>
                     Vehicles
                 </a>
+
+                @can('create', App\Models\Vehicle::class)
+                <a class="item {{ $current_url == route('new_vehicle') ? 'active' : '' }}" href="{{ route('new_vehicle') }}">
+                    <i class="plus icon"></i>
+                    Add Vehicle
+                @endcan</a>
             @endauth
         </div>
 
@@ -73,8 +79,8 @@
                     @endauth
                 </div>
 
-                <div id="content" class="ui attached segment">
-                    <div class="ui centered grid container">
+                <div id="content" class="ui padded attached segment">
+                    <div class="ui grid container">
                         {{ $slot }}
                     </div>
                 </div>

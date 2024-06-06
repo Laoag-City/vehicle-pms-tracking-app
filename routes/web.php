@@ -14,5 +14,9 @@ Route::middleware('auth')->group(function() {
 
     Route::get('/vehicles', [VehicleController::class, 'getVehicles'])->name('vehicles');
 
+    Route::get('/new-vehicle', [VehicleController::class, 'newVehicle'])
+            ->middleware('can:create,App\Models\Vehicle')
+            ->name('new_vehicle');
+
     Route::post('/logout', [AuthenticationController::class, 'logOut']);
 });

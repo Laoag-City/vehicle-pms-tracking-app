@@ -26,6 +26,11 @@ class Vehicle extends Model
         return $this->belongsTo(VehicleMake::class);
     }
 
+    public function year(): BelongsTo
+    {
+        return $this->belongsTo(Year::class);
+    }
+
     public function repair_and_maintenances(): HasMany
     {
         return $this->hasMany(RepairAndMaintenance::class);

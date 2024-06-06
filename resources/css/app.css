@@ -17,3 +17,8 @@ body>.pusher
 {
 	width: 0;
 }
+
+.no-display
+{
+	display: none;
+}

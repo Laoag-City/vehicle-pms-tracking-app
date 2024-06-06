@@ -21,7 +21,11 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
-            $table->foreignId('vehicle_make')
+            $table->foreignId('vehicle_make_id')
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+            $table->foreignId('year_id')
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
