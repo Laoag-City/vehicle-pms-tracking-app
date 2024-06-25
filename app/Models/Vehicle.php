@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 
 class Vehicle extends Model
 {
@@ -34,5 +36,12 @@ class Vehicle extends Model
     public function repair_and_maintenances(): HasMany
     {
         return $this->hasMany(RepairAndMaintenance::class);
+    }
+
+    protected function plateNumber(): Attribute
+    {
+        return Attribute::make(
+            set: fn (string $value) => Str::upper($value)
+        );
     }
 }

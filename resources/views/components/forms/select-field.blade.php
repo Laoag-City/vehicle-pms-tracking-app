@@ -16,7 +16,7 @@
     <select id="{{ $name }}" name="{{ $name }}" {{ !$required ?: 'required' }}>
         <option>{{ $placeholder }}</option>
         @foreach($options as $option)
-            <option value="{{ $option->selectValue() }}" {{ !$selected == $option->selectValue() ?: 'selected' }}>{{ $option->selectName() }}</option>
+            <option value="{{ $option->selectValue() }}" {{ $selected != $option->selectValue() ?: 'selected' }}>{{ $option->selectName() }}</option>
         @endforeach
     </select>
 </div>

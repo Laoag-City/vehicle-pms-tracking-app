@@ -10,4 +10,13 @@ class VehicleMakeService
     {
         return VehicleMake::all();
     }
+
+    public function new($make): VehicleMake
+    {
+        $vehicleMake = new VehicleMake;
+        $vehicleMake->make = $make;
+        $vehicleMake->save();
+
+        return $vehicleMake;
+    }
 }

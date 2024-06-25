@@ -2,7 +2,7 @@
     <x-slot:title>Add Vehicle</x-slot>
 
     <div class="eight wide centered column">
-        <form action="{{ url()->current() }}" method="POST" class="ui form {{ !$errors->any() ?: 'error' }}" x-data="form">
+        <form action="{{ url()->current() }}" method="POST" class="ui form {{ $errors->any() ? 'error' : 'success' }}" x-data="form">
             @csrf
 
             @if($errors->any())
@@ -31,7 +31,7 @@
                 type="hidden" 
                 name="show_make_list"
                 x-model="showMakeList"
-                data-initial-value="{{ old('show_make_list') ? (bool)old('show_make_list') : true }}">
+                data-initial-value="{{ old('show_make_list') != null ? old('show_make_list') : 1 }}">
 
             <template x-if="showMakeList">
                 <div class="fields">
@@ -46,7 +46,7 @@
                     />
 
                     <div class="six wide field" style="	align-self: flex-end;">
-                        <x-actions.button class="small blue inverted" x-on:click="switchVehicleMakeField(false)">
+                        <x-actions.button class="small blue inverted" x-on:click="switchVehicleMakeField(0)">
                             Switch to New Vehicle Make
                         </x-actions.button>
                     </div>
@@ -58,14 +58,14 @@
                     <x-forms.text-field
                         class="ten wide"
                         label="New Vehicle Make"
-                        name="vehicle_make"
-                        :value="old('vehicle_make')"
-                        :error="$errors->first('vehicle_make')"
+                        name="new_vehicle_make"
+                        :value="old('new_vehicle_make')"
+                        :error="$errors->first('new_vehicle_make')"
                         :required="true"
                     />
 
                     <div class="six wide field" style="	align-self: flex-end;">
-                        <x-actions.button class="small blue inverted" x-on:click="switchVehicleMakeField(true)">
+                        <x-actions.button class="small blue inverted" x-on:click="switchVehicleMakeField(1)">
                             Switch to Vehicle Make List
                         </x-actions.button>
                     </div>
@@ -134,7 +134,7 @@
 
                     init()
                     {
-                        this.showMakeList = Boolean(document.getElementById('show_make_list').dataset.initialValue);
+                        this.showMakeList = parseInt(document.getElementById('show_make_list').dataset.initialValue);
                     }
                 }));
             });

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AddNewVehicleRequest;
 use App\Models\Vehicle;
 use App\Services\OfficeService;
 use App\Services\VehicleClassificationService;
@@ -48,5 +49,12 @@ class VehicleController extends Controller
             'offices' => $offices,
             'yearNow' => $yearNow
         ]);
+    }
+
+    public function addNewVehicle(AddNewVehicleRequest $request)
+    {
+        $this->vehicleService->new($request->validated());
+
+        return back()->with('success', 'New vehicle added successfully!');
     }
 }
