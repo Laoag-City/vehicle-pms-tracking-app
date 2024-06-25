@@ -5,7 +5,8 @@ body
 
 body>.pusher
 {
-	padding-top: 12px;
+	padding-top: 15px;
+	padding-bottom: 15px;
 }
 
 #content
@@ -16,6 +17,11 @@ body>.pusher
 #content-header::before
 {
 	width: 0;
+}
+
+#content>div.container
+{
+	margin-top: 10px;
 }
 
 .no-display

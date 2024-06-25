@@ -10,4 +10,9 @@ class OfficeService
     {
         return Office::all();
     }
+
+    public function getOffice($id)
+    {
+        return Office::find($id);
+    }
 }

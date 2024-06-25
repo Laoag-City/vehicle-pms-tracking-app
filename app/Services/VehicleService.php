@@ -24,12 +24,14 @@ class VehicleService
         if($makeId != null)
             $vehicles = $vehicles->where('vehicle_make_id', $makeId);
 
-        return $vehicles->get();
+        return $vehicles
+                ->with(['office', 'vehicle_classification', 'repair_and_maintenances', 'vehicle_make', 'year'])
+                ->get();
     }
 
     public function new($validatedData)
     {
-        $year = $this->yearService->getYear($validatedData['year']);
+        $year = $this->yearService->getYear($validatedData['year_model']);
 
         if((bool)$validatedData['show_make_list'])
             $vehicle_make = $validatedData['vehicle_make'];

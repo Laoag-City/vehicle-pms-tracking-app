@@ -9,6 +9,7 @@ use App\Services\VehicleClassificationService;
 use App\Services\VehicleMakeService;
 use App\Services\VehicleService;
 use App\Services\YearService;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -25,14 +26,35 @@ class VehicleController extends Controller
 
     public function getVehicles(Request $request): View
     {
-        if($request->user()->can('viewAny', Vehicle::class))
-            $vehicles = $this->vehicleService->vehicles();
+        $offices = [];
+        $canViewAnyVehicle = $request->user()->can('viewAny', Vehicle::class);
+
+        if($canViewAnyVehicle)
+        {
+            $offices = $this->officeService->offices();
+
+            if(!$request->office_filter)
+                $vehicles = $this->vehicleService->vehicles();
+
+            else
+            {
+                Validator::make($request->all(), [
+                    'office_filter' => 'required|exists:offices,id'
+                ])->validate();
+
+                $office = $offices->where('id', $request->office_filter)->first();
+
+                $vehicles = $this->vehicleService->vehicles($office->id);
+            }
+        }
 
         else
             $vehicles = $this->vehicleService->vehicles($request->user()->office_id);
 
         return view('vehicles', [
-            'vehicles' => $vehicles
+            'canViewAnyVehicle' => $canViewAnyVehicle,
+            'offices' => $offices,
+            'officeVehicles' => $vehicles->sortBy('office.id')->groupBy('office.name')
         ]);
     }
 

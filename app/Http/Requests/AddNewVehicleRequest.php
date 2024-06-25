@@ -32,7 +32,7 @@ class AddNewVehicleRequest extends FormRequest
             'show_make_list' => 'required|boolean',
             'office_issued_to' => 'required|exists:offices,id',
             'model' => ['required', 'string', new AlphaNumDashSpaceDot],
-            'year' => "required|integer|min:1950|max:$yearNow",
+            'year_model' => "required|integer|min:1950|max:$yearNow",
             'plate_number' => ['required', 'string', 'min:1', 'max:8', new AlphaNumSpace,'unique:vehicles,plate_number']
         ];
     }

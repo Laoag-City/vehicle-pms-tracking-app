@@ -93,11 +93,11 @@
 
                 <x-forms.text-field
                     class="three wide"
-                    label="Year"
-                    name="year"
+                    label="Year Model"
+                    name="year_model"
                     type="number"
-                    :value="old('year')"
-                    :error="$errors->first('year')"
+                    :value="old('year_model')"
+                    :error="$errors->first('year_model')"
                     :required="true"
                     min="1950"
                     :max="$yearNow"
