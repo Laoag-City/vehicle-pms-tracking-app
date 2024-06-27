@@ -44,4 +44,9 @@ class Vehicle extends Model
             set: fn (string $value) => Str::upper($value)
         );
     }
+
+    public function completeVehicleName(): string
+    {
+        return "{$this->year->year} {$this->vehicle_make->make} {$this->model}";
+    }
 }

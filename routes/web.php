@@ -14,6 +14,12 @@ Route::middleware('auth')->group(function() {
 
     Route::get('/vehicles', [VehicleController::class, 'getVehicles'])->name('vehicles');
 
+    Route::get('/vehicles/{vehicle}', [VehicleController::class, 'vehicleInfo'])->name('vehicle_info');
+
+    Route::put('/vehicles/{vehicle}', [VehicleController::class, 'updateVehicle'])
+        ->middleware('can:update,vehicle')
+        ->name('vehicle_update');
+
     Route::middleware('can:create,App\Models\Vehicle')->group(function(){
         Route::get('/new-vehicle', [VehicleController::class, 'newVehicle'])->name('new_vehicle');
 

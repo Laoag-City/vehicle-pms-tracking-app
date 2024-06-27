@@ -7,7 +7,7 @@
         <div class="item">
             <div class="content">
                 <div class="header">
-                    {{ "{$vehicle->year->year} {$vehicle->vehicle_make->make} {$vehicle->model}" }}
+                    {{ $vehicle->completeVehicleName() }}
                 </div>
 
                 <div class="meta">
@@ -25,11 +25,11 @@
                         <a href="" class="ui right floated red basic mini button">Remove</a>
                     @endcan
 
-                    @can('update', $vehicle)
-                        <a href="" class="ui right floated yellow basic mini button">Edit</a>
+                    @can('create', App\Models\RepairAndMaintenance::class)
+                        <a href="" class="ui right floated teal basic mini button">Add Repair/Maintenance</a>
                     @endcan
 
-                    <a href="" class="ui right floated blue basic mini button">Repair/Maintenance Info</a>
+                    <a href="{{ route('vehicle_info', ['vehicle' => $vehicle]) }}" class="ui right floated blue basic mini button">Info</a>
                 </div>
             </div>
         </div>

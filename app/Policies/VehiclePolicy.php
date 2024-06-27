@@ -24,7 +24,7 @@ class VehiclePolicy
      */
     public function view(User $user, Vehicle $vehicle): bool
     {
-        return $user->office->id == $vehicle->office->id;
+        return $user->office->id == $vehicle->office->id || $this->viewAny($user);
     }
 
     /**

@@ -6,8 +6,10 @@
     'error' => "",
     'placeholder' => "",
     'required' => false,
+    'readonly' => false,
     'min' => null,
-    'max' => null
+    'max' => null,
+    'jsBind' => '{}'
 ])
 
 <div {{ $attributes->class(['field', 'error' => !!$error , 'no-display' => $type == 'hidden']) }} {!! !$error ?: 'data-tooltip="' . $error . '"' !!}>
@@ -24,5 +26,7 @@
         min="{{ $min }}"
         max="{{ $max }}"
         {{ !$required ?: 'required' }}
+        {{ !$readonly ?: 'readonly' }}
+        x-bind="{{ $jsBind }}"
     >
 </div>
