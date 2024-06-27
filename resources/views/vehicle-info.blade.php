@@ -28,15 +28,19 @@
                 </x-contents.message>
             @endif
 
-            <x-forms.checkbox-field
-                label="Edit"
-                name="edit_mode"
-                :value="1"
-                :checked="old('edit_mode')"
-                :error="$errors->first('edit_mode')"
-                style="float: right;"
-                js-bind="editModeBind"
-            />
+            @can('update', $vehicle)
+                <x-forms.checkbox-field
+                    label="Edit"
+                    name="edit_mode"
+                    :value="1"
+                    :checked="old('edit_mode')"
+                    :error="$errors->first('edit_mode')"
+                    style="float: right;"
+                    js-bind="editModeBind"
+                />
+            @else
+
+            @endcan
 
             {{--Vehicle Classification--}}
             <template x-if="!editMode">
@@ -244,7 +248,7 @@
 
                     init()
                     {
-                        this.editMode = document.getElementById('edit_mode').checked;
+                        this.editMode = document.getElementById('edit_mode') != null ? document.getElementById('edit_mode').checked : false;
                         this.showMakeList = parseInt(document.getElementById('show_make_list').dataset.initialValue);
                         this.vehicleMakeInitialVal = document.getElementById('show_make_list').dataset.vehicleMakeInitialValue;
                         this.vehicleMake = this.vehicleMakeInitialVal;

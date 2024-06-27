@@ -86,23 +86,25 @@ class VehicleController extends Controller
 
     public function vehicleInfo(Vehicle $vehicle, Request $request): View
     {
-        if($request->user()->cannot('viewAny', Vehicle::class) || $request->user()->cannot('view', $vehicle))
-            abort(403);
+        if($request->user()->can('viewAny', Vehicle::class) || $request->user()->can('view', $vehicle))
+        {
+            $vehicle = $this->vehicleService->loadOtherVehicleInfo($vehicle);
 
-        $vehicle = $this->vehicleService->loadOtherVehicleInfo($vehicle);
+            $vehicleClassifications = $this->vehicleClassificationService->vehicleClassifications();
+            $vehicleMakes = $this->vehicleMakeService->vehicleMakes();
+            $offices = $this->officeService->offices();
+            $yearNow = $this->yearService->getYear()->year;
 
-        $vehicleClassifications = $this->vehicleClassificationService->vehicleClassifications();
-        $vehicleMakes = $this->vehicleMakeService->vehicleMakes();
-        $offices = $this->officeService->offices();
-        $yearNow = $this->yearService->getYear()->year;
+            return view('vehicle-info', [
+                'vehicle' => $vehicle,
+                'vehicleClassifications' => $vehicleClassifications,
+                'vehicleMakes' => $vehicleMakes,
+                'offices' => $offices,
+                'yearNow' => $yearNow
+            ]);
+        }
 
-        return view('vehicle-info', [
-            'vehicle' => $vehicle,
-            'vehicleClassifications' => $vehicleClassifications,
-            'vehicleMakes' => $vehicleMakes,
-            'offices' => $offices,
-            'yearNow' => $yearNow
-        ]);
+        abort(403);
     }
 
     public function updateVehicle(Vehicle $vehicle)
