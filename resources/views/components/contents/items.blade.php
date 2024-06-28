@@ -26,7 +26,7 @@
                     @endcan
 
                     @can('create', App\Models\RepairAndMaintenance::class)
-                        <a href="" class="ui right floated teal basic mini button">Add Repair/Maintenance</a>
+                        <a href="{{ route('new_repair_and_maintenance') }}" class="ui right floated teal basic mini button">Add Repair/Maintenance</a>
                     @endcan
 
                     <a href="{{ route('vehicle_info', ['vehicle' => $vehicle]) }}" class="ui right floated blue basic mini button">Info</a>

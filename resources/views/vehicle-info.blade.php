@@ -38,8 +38,6 @@
                     style="float: right;"
                     js-bind="editModeBind"
                 />
-            @else
-
             @endcan
 
             {{--Vehicle Classification--}}

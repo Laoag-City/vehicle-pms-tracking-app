@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\RepairAndMaintenanceController;
 use App\Http\Controllers\VehicleController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,12 @@ Route::middleware('auth')->group(function() {
         Route::get('/new-vehicle', [VehicleController::class, 'newVehicle'])->name('new_vehicle');
 
         Route::post('/new-vehicle', [VehicleController::class, 'addNewVehicle'])->name('add_new_vehicle');
+    });
+
+    Route::middleware('can:create,App\Models\RepairAndMaintenance')->group(function(){
+        Route::get('/new-repair-maintenance', [RepairAndMaintenanceController::class, 'newRepairAndMaintenance'])->name('new_repair_and_maintenance');
+
+        Route::post('/new-repair-maintenance', [RepairAndMaintenanceController::class, 'addNewRepairAndMaintenance'])->name('add_new_repair_and_maintenance');
     });
 
     Route::post('/logout', [AuthenticationController::class, 'logOut']);
