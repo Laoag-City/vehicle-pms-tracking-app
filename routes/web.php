@@ -28,7 +28,7 @@ Route::middleware('auth')->group(function() {
     });
 
     Route::middleware('can:create,App\Models\RepairAndMaintenance')->group(function(){
-        Route::get('/new-repair-maintenance', [RepairAndMaintenanceController::class, 'newRepairAndMaintenance'])->name('new_repair_and_maintenance');
+        Route::get('/new-repair-maintenance/{vehicle}', [RepairAndMaintenanceController::class, 'newRepairAndMaintenance'])->name('new_repair_and_maintenance');
 
         Route::post('/new-repair-maintenance', [RepairAndMaintenanceController::class, 'addNewRepairAndMaintenance'])->name('add_new_repair_and_maintenance');
     });
