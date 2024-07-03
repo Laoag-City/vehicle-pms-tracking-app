@@ -19,6 +19,11 @@ body>.pusher
 	width: 0;
 }
 
+#user-icon-info
+{
+	cursor: help;
+}
+
 #content>div.container
 {
 	margin-top: 10px;

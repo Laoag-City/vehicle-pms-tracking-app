@@ -219,18 +219,18 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Component::insert([
-            ['component' => 'engine'],
-            ['component' => 'transmission system'],
-            ['component' => 'fuel system'],
-            ['component' => 'cooling system'],
-            ['component' => 'braking system'],
-            ['component' => 'suspension'],
-            ['component' => 'chassis'],
-            ['component' => 'wheels/tires'],
-            ['component' => 'exhuast system'],
-            ['component' => 'steering system'],
-            ['component' => 'electrical system'],
-            ['component' => 'auxiliary components']
+            ['component' => 'Engine'],
+            ['component' => 'Transmission System'],
+            ['component' => 'Fuel System'],
+            ['component' => 'Cooling System'],
+            ['component' => 'Braking System'],
+            ['component' => 'Suspension'],
+            ['component' => 'Chassis'],
+            ['component' => 'Wheels/Tires'],
+            ['component' => 'Exhaust System'],
+            ['component' => 'Steering System'],
+            ['component' => 'Electrical System'],
+            ['component' => 'Auxiliary Components']
         ]);
     }
 }

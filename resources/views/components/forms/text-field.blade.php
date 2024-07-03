@@ -9,6 +9,7 @@
     'readonly' => false,
     'min' => null,
     'max' => null,
+    'step' => null,
     'jsBind' => '{}'
 ])
 
@@ -25,6 +26,7 @@
         placeholder="{{ $placeholder }}"
         min="{{ $min }}"
         max="{{ $max }}"
+        {{ !$step ?: "step=$step" }}
         {{ !$required ?: 'required' }}
         {{ !$readonly ?: 'readonly' }}
         x-bind="{{ $jsBind }}"

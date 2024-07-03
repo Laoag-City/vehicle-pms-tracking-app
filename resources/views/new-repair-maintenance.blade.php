@@ -1,7 +1,7 @@
 <x-layout>
-    <x-slot:title>Add Repair/Maintenance Record</x-slot>
+    <x-slot:title>New Repair/Maintenance Record</x-slot>
 
-    <div class="eight wide centered column">
+    <div class="ten wide centered column">
         <h3 class="ui block header">
             {{ $vehicle->completeVehicleName() }}
             
@@ -15,7 +15,7 @@
         <form action="{{ url()->current() }}" method="POST" class="ui form {{ $errors->any() ? 'error' : 'success' }}">
             @csrf
 
-            <h4 class="ui header">Add Repair/Maintenance Record</h4>
+            <h4 class="ui header">New Repair/Maintenance Record</h4>
 
             <br>
 
@@ -48,18 +48,46 @@
                 :required="true"
             />
 
-            <x-forms.radio-button-field
-                label="Type"
-                name="type"
-                :values="['Repair', 'Maintenance']"
-                :checked="old('type')"
-                :error="$errors->first('type')"
-                :required="true"
-            />
+            <div class="fields">
+                <div class="five wide field">
+                    <x-forms.radio-button-field
+                        label="Type"
+                        name="type"
+                        :values="['Repair', 'Maintenance']"
+                        :checked="old('type')"
+                        :error="$errors->first('type')"
+                        :inline="false"
+                        :required="true"
+                    />
+                </div>
+
+                <x-forms.text-field
+                    class="five wide"
+                    label="Estimated Cost"
+                    name="estimated_cost"
+                    :value="old('estimated_cost')"
+                    type="number"
+                    min="1"
+                    max="99999999"
+                    step=".01"
+                    :error="$errors->first('estimated_cost')"
+                    :required="true"
+                />
+
+                <x-forms.text-field
+                    class="six wide"
+                    label="Date Encoded"
+                    name="date_encoded"
+                    :value="old('date_encoded')"
+                    type="date"
+                    :error="$errors->first('date_encoded')"
+                    :required="true"
+                />
+            </div>
 
             <div class="field">
                 <x-actions.button class="small blue fluid" type="submit">
-                    Add Record
+                    Add Repair/Maintenance
                 </x-actions.button>
             </div>
         </form>

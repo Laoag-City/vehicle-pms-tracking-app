@@ -218,6 +218,12 @@
         </form>
     </div>
 
+    <div class="fourteen wide centered column">
+        <br>
+
+        <div class="ui large horizontal section divider">Repair and Maintenances</div>
+    </div>
+
     @pushOnce('scripts')
         <script>
             document.addEventListener('alpine:init', () => {

@@ -23,6 +23,11 @@
     <body>
         <div class="ui left mini vertical inverted labeled icon sidebar menu">
             @auth
+                <a id="user-icon-info" class="item" title="{{ request()->user()->name . " - " . request()->user()->role->role }}" href="#">
+                    <i class="user icon"></i>
+                    User
+                </a>
+
                 <a class="item {{ $current_url == route('home') ? 'active' : '' }}" href="{{ route('home') }}">
                     <i class="home icon"></i>
                     Home
@@ -43,10 +48,16 @@
 
         <div class="pusher">
             <div class="ui container">
-                <div class="ui large attached menu">
+                <div class="ui large attached stackable menu">
                     @auth
                         <div class="item">
-                            <x-actions.button id="menu-button" class="basic icon" title="Toggle Menu">
+                            <x-actions.button 
+                                id="menu-button"
+                                class="fluid blue inverted icon"
+                                data-tooltip="Toggle Menu"
+                                data-variation="tiny basic"
+                                data-position="bottom left"
+                            >
                                 <i class="list ul icon"></i>
                             </x-actions.button>
                         </div>
@@ -67,7 +78,14 @@
                     @auth
                         <div class="right menu">
                             <div class="item">
-                                <x-actions.button id="menu-button" class="basic icon" title="Log Out" onclick="event.preventDefault(); document.getElementById('logout_form').submit();">
+                                <x-actions.button 
+                                    id="menu-button" 
+                                    class="fluid red inverted icon" 
+                                    data-tooltip="Log Out"
+                                    data-variation="tiny basic"
+                                    data-position="bottom right"
+                                    onclick="event.preventDefault(); document.getElementById('logout_form').submit();"
+                                >
                                     <i class="sign out icon"></i>
                                 </x-actions.button>
                             </div>
@@ -80,7 +98,7 @@
                 </div>
 
                 <div id="content" class="ui padded attached segment">
-                    <div class="ui grid container">
+                    <div class="ui stackable grid container">
                         {{ $slot }}
                     </div>
                 </div>
@@ -92,7 +110,7 @@
                     </div>
 
                     <div class="right menu">
-                        <div class="item" data-tooltip="Proudly developed by R. J. Bello." data-variation="mini">
+                        <div class="item" data-tooltip="Proudly developed by R. J. Bello." data-variation="tiny basic" data-position="top right">
                             <i class="code icon"></i>
                         </div>
                     </div>

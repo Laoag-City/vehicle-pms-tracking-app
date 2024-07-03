@@ -10,7 +10,7 @@
 ])
 
 <div {{ $attributes->class(['inline' => $inline, 'grouped' => !$inline, 'fields', 'error' => !!$error, ]) }} {!! !$error ?: 'data-tooltip="' . $error . '"' !!}>
-	<label for="{{ $name }}">
+	<label>
 		<b>{{ $label }}</b>
 	</label>
 
@@ -28,7 +28,7 @@
 					tabindex="0"
 					x-bind="{{ $jsBind }}"
 				>
-				<label>{{ $value }}</label>
+				<label for="{{ "$name-$value" }}">{{ $value }}</label>
 			</div>
 		</div>
 	@endforeach
