@@ -2,13 +2,10 @@
     <x-slot:title>New Repair/Maintenance Record</x-slot>
 
     <div class="ten wide centered column">
-        <h3 class="ui block header">
-            {{ $vehicle->completeVehicleName() }}
-            
-            <div class="sub header">
-                {{ $vehicle->office->name }}
-            </div>
-        </h3>
+        <x-contents.header class="primary block">
+            <x-slot:main>{{ $vehicle->completeVehicleName() }}</x-slot>
+            {{ $vehicle->office->name }} | Plate No: {{ $vehicle->plate_number }}
+        </x-contents.header>
 
         <div class="ui divider"></div>
 

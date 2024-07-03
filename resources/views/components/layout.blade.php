@@ -58,7 +58,7 @@
                                 data-variation="tiny basic"
                                 data-position="bottom left"
                             >
-                                <i class="list ul icon"></i>
+                                <i class="bars icon"></i>
                             </x-actions.button>
                         </div>
                     @endauth

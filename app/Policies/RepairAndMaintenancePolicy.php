@@ -22,7 +22,7 @@ class RepairAndMaintenancePolicy
      */
     public function update(User $user, RepairAndMaintenance $repairAndMaintenance): bool
     {
-        return $user->role->role == Role::GSO_Encoder->value;
+        return $user->role->role == Role::GSO_Administrator->value;
     }
 
     /**

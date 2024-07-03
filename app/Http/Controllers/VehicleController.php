@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AddNewVehicleRequest;
 use App\Http\Requests\EditVehicleInfoRequest;
+use App\Models\RepairAndMaintenance;
 use App\Models\Vehicle;
 use App\Services\OfficeService;
 use App\Services\VehicleClassificationService;
@@ -90,17 +91,32 @@ class VehicleController extends Controller
         {
             $vehicle = $this->vehicleService->loadOtherVehicleInfo($vehicle);
 
-            $vehicleClassifications = $this->vehicleClassificationService->vehicleClassifications();
-            $vehicleMakes = $this->vehicleMakeService->vehicleMakes();
-            $offices = $this->officeService->offices();
-            $yearNow = $this->yearService->getYear()->year;
+            if($request->user()->can('update', $vehicle))
+            {
+                $vehicleClassifications = $this->vehicleClassificationService->vehicleClassifications();
+                $vehicleMakes = $this->vehicleMakeService->vehicleMakes();
+                $offices = $this->officeService->offices();
+                $yearNow = $this->yearService->getYear()->year;
+            }
+
+            else
+            {
+                $vehicleClassifications = $vehicleMakes = $offices = [];
+                $yearNow = null;
+            }
+
+            $repairAndMaintenance = new RepairAndMaintenance;
+            $canUpdateRepairAndMaintenance = $request->user()->can('update', $repairAndMaintenance);
+            $canDeleteRepairAndMaintenance = $request->user()->can('delete', $repairAndMaintenance);
 
             return view('vehicle-info', [
                 'vehicle' => $vehicle,
                 'vehicleClassifications' => $vehicleClassifications,
                 'vehicleMakes' => $vehicleMakes,
                 'offices' => $offices,
-                'yearNow' => $yearNow
+                'yearNow' => $yearNow,
+                'canUpdateRepairAndMaintenance' => $canUpdateRepairAndMaintenance,
+                'canDeleteRepairAndMaintenance' => $canDeleteRepairAndMaintenance
             ]);
         }
 

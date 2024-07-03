@@ -40,7 +40,7 @@
         @foreach($officeVehicles as $office => $vehicles)
             <h2 class="ui header">{{ $office }}</h2>
 
-            <x-contents.items
+            <x-contents.vehicle-items
                 :vehicles="$vehicles"
             />
 

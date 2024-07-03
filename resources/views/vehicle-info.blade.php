@@ -2,13 +2,10 @@
     <x-slot:title>Vehicle Info</x-slot>
 
     <div class="eight wide centered column">
-        <h3 class="ui block header">
-            {{ $vehicle->completeVehicleName() }}
-            
-            <div class="sub header">
-                {{ $vehicle->office->name }}
-            </div>
-        </h3>
+        <x-contents.header class="primary block">
+            <x-slot:main>{{ $vehicle->completeVehicleName() }}</x-slot>
+            {{ $vehicle->office->name }}
+        </x-contents.header>
 
         <br>
         
@@ -218,10 +215,56 @@
         </form>
     </div>
 
-    <div class="fourteen wide centered column">
+    <div class="sixteen wide centered column">
         <br>
 
         <div class="ui large horizontal section divider">Repair and Maintenances</div>
+
+        <x-contents.table class="small celled center aligned stackable selectable striped">
+            <x-slot:head>
+                <tr>
+                    <th>Description</th>
+                    <th>Component</th>
+                    <th class="collapsing">Type</th>
+                    <th class="collapsing">Estimated Cost</th>
+                    <th class="collapsing">Date Encoded</th>
+                    @if($canUpdateRepairAndMaintenance || $canDeleteRepairAndMaintenance)
+                        <th class="collapsing"></th>
+                    @endif
+                </tr>
+            </x-slot>
+
+            <x-slot:body>
+                @foreach($vehicle->repair_and_maintenances as $item)
+                    <tr>
+                        <td>{{ $item->description }}</td>
+                        <td>{{ $item->component->component }}</td>
+                        <td>{{ $item->is_repair }}</td>
+                        <td>{{ $item->estimated_cost }}</td>
+                        <td>{{ $item->date_encoded }}</td>
+                        @if($canUpdateRepairAndMaintenance || $canDeleteRepairAndMaintenance)
+                            <td>
+                                <x-actions.simple-dropdown class="small">
+                                    <x-slot:label>
+                                        <i class="small bars icon"></i>
+                                    </x-slot>
+                                    
+                                    @if($canUpdateRepairAndMaintenance)
+                                        <a class="item" href="">Edit</a>
+                                    @endif
+
+                                    @if($canDeleteRepairAndMaintenance)
+                                        <a class="item" href="">Remove</a>
+                                    @endif
+                                </x-actions.simple-dropdown>
+                            </td>
+                        @endif
+                    </tr>
+                @endforeach
+            </x-slot>
+        </x-contents.table>
+
+        <br>
     </div>
 
     @pushOnce('scripts')
