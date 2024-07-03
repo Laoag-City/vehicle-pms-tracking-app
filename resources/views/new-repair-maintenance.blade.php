@@ -50,7 +50,7 @@
                     <x-forms.radio-button-field
                         label="Type"
                         name="type"
-                        :values="['Repair', 'Maintenance']"
+                        :values="['Repair', 'Replacement']"
                         :checked="old('type')"
                         :error="$errors->first('type')"
                         :inline="false"

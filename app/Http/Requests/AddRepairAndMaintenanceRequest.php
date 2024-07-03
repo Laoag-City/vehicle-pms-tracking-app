@@ -24,7 +24,7 @@ class AddRepairAndMaintenanceRequest extends FormRequest
         return [
             'component' => 'bail|required|exists:components,id',
             'description' => 'bail|required|string|min:3,120',
-            'type' => 'bail|required|in:Repair,Maintenance',
+            'type' => 'bail|required|in:Repair,Replacement',
             'estimated_cost' => 'bail|required|numeric|regex:/^[0-9]{1,8}+(\.[0-9]{1,2})?$/|between:1,99999999',
             'date_encoded' => 'bail|required|date|before_or_equal:now'
         ];

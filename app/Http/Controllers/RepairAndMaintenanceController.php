@@ -33,6 +33,6 @@ class RepairAndMaintenanceController extends Controller
 
         abort_if(!$added, 500);
 
-        return back()->with('success', 'New Repair/Maintenance record added successfully!');
+        return back()->with('success', 'New record added successfully!');
     }
 }

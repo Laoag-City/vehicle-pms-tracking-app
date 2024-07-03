@@ -31,7 +31,7 @@ class RepairAndMaintenance extends Model
     protected function isRepair(): Attribute
     {
         return Attribute::make(
-            get: fn(string $value) => $value ? 'Repair' : 'Maintenance'
+            get: fn(string $value) => $value ? 'Repair' : 'Replacement'
         );
     }
 
