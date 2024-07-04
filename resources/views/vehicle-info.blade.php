@@ -2,6 +2,25 @@
     <x-slot:title>Vehicle Info</x-slot>
 
     <div class="eight wide centered column">
+        <a class="ui basic mini button" href="{{ route('vehicles') }}">
+            <i class="caret left icon"></i>
+            Back
+        </a>
+
+        @can('create', App\Models\RepairAndMaintenance::class)
+            <a class="ui basic teal right floated mini button" href="{{ route('new_repair_and_maintenance', ['vehicle' => $vehicle->id]) }}">
+                <i class="plus icon"></i>
+                Add Repair/Maintenance
+            </a>
+        @endcan
+
+        @can('delete', $vehicle)
+            <a href="" class="ui right floated red basic mini button">
+                <i class="close icon"></i>
+                Remove
+            </a>
+        @endcan
+        
         <x-contents.header class="primary block">
             <x-slot:main>{{ $vehicle->completeVehicleName() }}</x-slot>
             {{ $vehicle->office->name }}
@@ -220,6 +239,24 @@
 
         <div class="ui large horizontal section divider">Repair and Maintenances</div>
 
+        <div class="ui two statistics" style="margin: 20px 0 20px 0;">
+            <div class="ui mini statistic">
+                <div class="value">
+                    <i class="money bill alternate outline icon"></i>
+                    {{ number_format($repairAndMaintenances->sum('estimated_cost'), 2) }}
+                </div>
+                <div class="label">Total Estimated Cost</div>
+            </div>
+
+            <div class="ui mini statistic">
+                <div class="value">
+                    <i class="ul list icon"></i>
+                    {{ $repairAndMaintenances->count() }}
+                </div>
+                <div class="label">Records</div>
+            </div>
+        </div>
+
         <x-contents.table class="small celled center aligned stackable selectable striped">
             <x-slot:head>
                 <tr>
@@ -235,12 +272,12 @@
             </x-slot>
 
             <x-slot:body>
-                @foreach($vehicle->repairAndMaintenances as $item)
+                @foreach($repairAndMaintenances as $item)
                     <tr>
                         <td>{{ $item->description }}</td>
                         <td>{{ $item->component->component }}</td>
                         <td>{{ $item->is_repair }}</td>
-                        <td>{{ $item->estimated_cost }}</td>
+                        <td>{{ $item->prettyEstimatedCost() }}</td>
                         <td>{{ $item->date_encoded }}</td>
                         @if($canUpdateRepairAndMaintenance || $canDeleteRepairAndMaintenance)
                             <td>

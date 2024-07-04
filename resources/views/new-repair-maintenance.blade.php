@@ -2,6 +2,11 @@
     <x-slot:title>New Repair/Maintenance Record</x-slot>
 
     <div class="ten wide centered column">
+        <a class="ui basic mini button" href="{{ route('vehicle_info', ['vehicle' => $vehicle->id]) }}">
+            <i class="caret left icon"></i>
+            Back
+        </a>
+        
         <x-contents.header class="primary block">
             <x-slot:main>{{ $vehicle->completeVehicleName() }}</x-slot>
             {{ $vehicle->office->name }} | Plate No: {{ $vehicle->plate_number }}

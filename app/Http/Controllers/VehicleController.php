@@ -115,6 +115,7 @@ class VehicleController extends Controller
                 'vehicleMakes' => $vehicleMakes,
                 'offices' => $offices,
                 'yearNow' => $yearNow,
+                'repairAndMaintenances' => $vehicle->repairAndMaintenances->sortByDesc('date_encoded'),
                 'canUpdateRepairAndMaintenance' => $canUpdateRepairAndMaintenance,
                 'canDeleteRepairAndMaintenance' => $canDeleteRepairAndMaintenance
             ]);

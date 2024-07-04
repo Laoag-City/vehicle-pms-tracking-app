@@ -25,16 +25,23 @@
 
                 <div class="extra">
                     @can('delete', $vehicle)
-                        <a href="" class="ui right floated red basic mini button">Remove</a>
+                        <a href="" class="ui right floated red basic mini button">
+                            <i class="close icon"></i>
+                            Remove
+                        </a>
                     @endcan
 
                     @can('create', App\Models\RepairAndMaintenance::class)
                         <a href="{{ route('new_repair_and_maintenance', ['vehicle' => $vehicle->id]) }}" class="ui right floated teal basic mini button">
+                            <i class="plus icon"></i>
                             Add Repair/Maintenance
                         </a>
                     @endcan
 
-                    <a href="{{ route('vehicle_info', ['vehicle' => $vehicle]) }}" class="ui right floated blue basic mini button">Info</a>
+                    <a href="{{ route('vehicle_info', ['vehicle' => $vehicle]) }}" class="ui right floated blue basic mini button">
+                        <i class="ul list icon"></i>
+                        Info
+                    </a>
                 </div>
             </div>
         </div>

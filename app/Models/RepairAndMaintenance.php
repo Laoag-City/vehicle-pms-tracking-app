@@ -26,11 +26,9 @@ class RepairAndMaintenance extends Model
         return $this->belongsTo(Component::class);
     }
 
-    protected function estimatedCost(): Attribute
+    public function prettyEstimatedCost(): string
     {
-        return Attribute::make(
-            get: fn(string $value) => number_format($value, 2)
-        );
+        return number_format($this->estimated_cost, 2);
     }
 
     protected function isRepair(): Attribute
