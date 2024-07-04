@@ -37,11 +37,11 @@ class RepairAndMaintenanceController extends Controller
         return back()->with('success', 'New record added successfully!');
     }
 
-    public function repairAndMaintenanceInfo(Vehicle $vehicle, RepairAndMaintenance $repair_and_maintenance): View
+    public function repairAndMaintenanceInfo(Vehicle $vehicle, RepairAndMaintenance $repairAndMaintenance): View
     {
         return view('repair-maintenance-info', [
             'vehicle' => $vehicle,
-            'repair_and_maintenance' => $repair_and_maintenance
+            'repairAndMaintenance' => $repairAndMaintenance
         ]);
     }
 

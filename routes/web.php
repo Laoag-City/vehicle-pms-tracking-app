@@ -21,13 +21,11 @@ Route::middleware('auth')->group(function() {
         ->middleware('can:update,vehicle')
         ->name('update_vehicle');
 
-    Route::middleware('can:update,App\Models\RepairAndMaintenance')->group(function(){
+    Route::middleware('can:update,repairAndMaintenance')->scopeBindings()->group(function(){
         Route::get('/vehicles/{vehicle}/repair-maintenance/{repairAndMaintenance}', [RepairAndMaintenanceController::class, 'repairAndMaintenanceInfo'])
-            ->scopeBindings()
             ->name('repair_and_maintenance_info');
 
-        Route::put('/vehicles/{vehicle}/repair-maintenance/{repair_and_maintenance}', [RepairAndMaintenanceController::class, 'updateRepairAndMaintenance'])
-            ->scopeBindings()
+        Route::put('/vehicles/{vehicle}/repair-maintenance/{repairAndMaintenance}', [RepairAndMaintenanceController::class, 'updateRepairAndMaintenance'])
             ->name('update_repair_and_maintenance');
     });
 
