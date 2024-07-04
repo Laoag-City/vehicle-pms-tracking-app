@@ -11,13 +11,13 @@
                 </div>
 
                 <div class="meta">
-                    <span>Classification: <b>{{ $vehicle->vehicle_classification->classification }}</b></span>
+                    <span>Classification: <b>{{ $vehicle->vehicleClassification->classification }}</b></span>
                     <span>Plate Number: <b>{{ $vehicle->plate_number }}</b></span>
                 </div>
 
                 <div class="description">
-                    Total of {{ $vehicle->repair_and_maintenances->where('is_repair', true)->count() }} repairs and 
-                    {{ $vehicle->repair_and_maintenances->where('is_repair', false)->count() }} maintenances.
+                    Total of {{ $vehicle->repairAndMaintenances->where('is_repair', true)->count() }} repairs and 
+                    {{ $vehicle->repairAndMaintenances->where('is_repair', false)->count() }} replacements.
                 </div>
 
                 <div class="extra">

@@ -24,7 +24,7 @@ class VehicleService
         if($makeId != null)
             $vehicles = $vehicles->where('vehicle_make_id', $makeId);
 
-        return $vehicles->with(['office', 'vehicle_classification', 'repair_and_maintenances', 'vehicle_make', 'year'])
+        return $vehicles->with(['office', 'vehicleClassification', 'repairAndMaintenances', 'vehicleMake', 'year'])
                         ->get();
     }
     
@@ -73,6 +73,6 @@ class VehicleService
 
     public function loadOtherVehicleInfo(Vehicle $vehicle): Vehicle
     {
-        return $vehicle->load('office', 'vehicle_classification', 'repair_and_maintenances.component', 'vehicle_make', 'year');
+        return $vehicle->load('office', 'vehicleClassification', 'repairAndMaintenances.component', 'vehicleMake', 'year');
     }
 }

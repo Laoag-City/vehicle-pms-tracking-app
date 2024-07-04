@@ -18,12 +18,12 @@ class Vehicle extends Model
         return $this->belongsTo(Office::class);
     }
 
-    public function vehicle_classification(): BelongsTo
+    public function vehicleClassification(): BelongsTo
     {
         return $this->belongsTo(VehicleClassification::class);
     }
 
-    public function vehicle_make(): BelongsTo
+    public function vehicleMake(): BelongsTo
     {
         return $this->belongsTo(VehicleMake::class);
     }
@@ -33,7 +33,7 @@ class Vehicle extends Model
         return $this->belongsTo(Year::class);
     }
 
-    public function repair_and_maintenances(): HasMany
+    public function repairAndMaintenances(): HasMany
     {
         return $this->hasMany(RepairAndMaintenance::class);
     }
@@ -47,6 +47,6 @@ class Vehicle extends Model
 
     public function completeVehicleName(): string
     {
-        return "{$this->year->year} {$this->vehicle_make->make} {$this->model}";
+        return "{$this->year->year} {$this->vehicleMake->make} {$this->model}";
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AddRepairAndMaintenanceRequest;
+use App\Models\RepairAndMaintenance;
 use App\Models\Vehicle;
 use App\Services\ComponentService;
 use App\Services\RepairAndMaintenanceService;
@@ -34,5 +35,18 @@ class RepairAndMaintenanceController extends Controller
         abort_if(!$added, 500);
 
         return back()->with('success', 'New record added successfully!');
+    }
+
+    public function repairAndMaintenanceInfo(Vehicle $vehicle, RepairAndMaintenance $repair_and_maintenance): View
+    {
+        return view('repair-maintenance-info', [
+            'vehicle' => $vehicle,
+            'repair_and_maintenance' => $repair_and_maintenance
+        ]);
+    }
+
+    public function updateRepairAndMaintenance(Vehicle $vehicle, RepairAndMaintenance $repairAndMaintenance): RedirectResponse
+    {
+        return back();
     }
 }

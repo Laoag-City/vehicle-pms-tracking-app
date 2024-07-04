@@ -11,7 +11,7 @@ class Component extends Model implements SelectFieldDataInterface
 {
     use HasFactory;
 
-    public function repair_and_maintenances(): HasMany
+    public function repairAndMaintenances(): HasMany
     {
         return $this->hasMany(RepairAndMaintenance::class);
     }

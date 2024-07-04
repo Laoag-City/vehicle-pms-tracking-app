@@ -42,7 +42,7 @@
                 <x-forms.text-field
                     label="Vehicle Classification"
                     name="classification"
-                    :value="$vehicle->vehicle_classification->classification"
+                    :value="$vehicle->vehicleClassification->classification"
                     :readonly="true"
                 />
             </template>
@@ -64,7 +64,7 @@
                 <x-forms.text-field
                     label="Vehicle Make"
                     name="make"
-                    :value="$vehicle->vehicle_make->make"
+                    :value="$vehicle->vehicleMake->make"
                     :readonly="true"
                 />
             </template>
@@ -235,7 +235,7 @@
             </x-slot>
 
             <x-slot:body>
-                @foreach($vehicle->repair_and_maintenances as $item)
+                @foreach($vehicle->repairAndMaintenances as $item)
                     <tr>
                         <td>{{ $item->description }}</td>
                         <td>{{ $item->component->component }}</td>
@@ -250,7 +250,7 @@
                                     </x-slot>
                                     
                                     @if($canUpdateRepairAndMaintenance)
-                                        <a class="item" href="">Edit</a>
+                                        <a class="item" href="{{ route('repair_and_maintenance_info', ['vehicle' => $vehicle->id, 'repairAndMaintenance' => $item->id]) }}">Edit</a>
                                     @endif
 
                                     @if($canDeleteRepairAndMaintenance)
