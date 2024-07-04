@@ -123,7 +123,7 @@ class VehicleController extends Controller
         abort(403);
     }
 
-    public function updateVehicle(Vehicle $vehicle)
+    public function updateVehicle(Vehicle $vehicle): RedirectResponse
     {
         $request = app(EditVehicleInfoRequest::class, ['vehicle' => $vehicle]);
 

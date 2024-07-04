@@ -18,7 +18,7 @@
                 <div class="description">
                     @foreach(App\Models\RepairAndMaintenance::$isRepairValues as $key => $val)
                         <a class="ui basic primary tag label" style="margin-right: 10px;">
-                            {{ "$key: {$vehicle->repairAndMaintenances->where('is_repair', $val)->count()}" }}
+                            {{ "$key: {$vehicle->repairAndMaintenances->where('is_repair', $key)->count()}" }}
                         </a>
                     @endforeach
                 </div>

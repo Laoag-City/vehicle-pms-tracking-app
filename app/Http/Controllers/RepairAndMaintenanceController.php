@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AddRepairAndMaintenanceRequest;
+use App\Http\Requests\EditRepairAndMaintenanceInfoRequest;
 use App\Models\RepairAndMaintenance;
 use App\Models\Vehicle;
 use App\Services\ComponentService;
@@ -40,14 +41,22 @@ class RepairAndMaintenanceController extends Controller
 
     public function repairAndMaintenanceInfo(Vehicle $vehicle, RepairAndMaintenance $repairAndMaintenance): View
     {
-        return view('repair-maintenance-info', [
+        $components = $this->componentService->components();
+
+        return view('edit-repair-maintenance', [
             'vehicle' => $vehicle,
-            'repairAndMaintenance' => $repairAndMaintenance
+            'components' => $components,
+            'repairAndMaintenance' => $repairAndMaintenance,
+            'isRepairValues' => array_keys(RepairAndMaintenance::$isRepairValues)
         ]);
     }
 
-    public function updateRepairAndMaintenance(Vehicle $vehicle, RepairAndMaintenance $repairAndMaintenance): RedirectResponse
+    public function updateRepairAndMaintenance(Vehicle $vehicle, RepairAndMaintenance $repairAndMaintenance, EditRepairAndMaintenanceInfoRequest $request): RedirectResponse
     {
-        return back();
+        $updated = $this->repairAndMaintenanceService->edit($repairAndMaintenance, $request->validated());
+
+        abort_if(!$updated, 500);
+
+        return back()->with('success', 'Repair/Maintenance record updated successfully!');
     }
 }

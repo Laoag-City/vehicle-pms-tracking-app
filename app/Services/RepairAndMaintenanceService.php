@@ -20,4 +20,15 @@ class RepairAndMaintenanceService
 
         return $repairAndMaintenance->save();
     }
+
+    public function edit(RepairAndMaintenance $repairAndMaintenance, $validated)
+    {
+        $repairAndMaintenance->component_id = $validated['component'];
+        $repairAndMaintenance->description = $validated['description'];
+        $repairAndMaintenance->is_repair = $repairAndMaintenance::$isRepairValues[$validated['type']];
+        $repairAndMaintenance->estimated_cost = $validated['estimated_cost'];
+        $repairAndMaintenance->date_encoded = $validated['date_encoded'];
+
+        return $repairAndMaintenance->save();
+    }
 }
