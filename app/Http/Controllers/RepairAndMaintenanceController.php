@@ -24,7 +24,8 @@ class RepairAndMaintenanceController extends Controller
 
         return view('new-repair-maintenance', [
             'vehicle' => $vehicle,
-            'components' => $components
+            'components' => $components,
+            'isRepairValues' => array_keys(RepairAndMaintenance::$isRepairValues)
         ]);
     }
 

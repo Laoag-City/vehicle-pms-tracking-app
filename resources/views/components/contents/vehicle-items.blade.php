@@ -16,8 +16,11 @@
                 </div>
 
                 <div class="description">
-                    Total of {{ $vehicle->repairAndMaintenances->where('is_repair', true)->count() }} repairs and 
-                    {{ $vehicle->repairAndMaintenances->where('is_repair', false)->count() }} replacements.
+                    @foreach(App\Models\RepairAndMaintenance::$isRepairValues as $key => $val)
+                        <a class="ui basic primary tag label" style="margin-right: 10px;">
+                            {{ "$key: {$vehicle->repairAndMaintenances->where('is_repair', $val)->count()}" }}
+                        </a>
+                    @endforeach
                 </div>
 
                 <div class="extra">

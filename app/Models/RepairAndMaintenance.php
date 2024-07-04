@@ -11,6 +11,11 @@ class RepairAndMaintenance extends Model
 {
     use HasFactory;
 
+    public static $isRepairValues = [
+        'Repair' => true,
+        'Replacement' => false
+    ];
+
     public function vehicle(): BelongsTo
     {
         return $this->belongsTo(Vehicle::class);
@@ -31,7 +36,7 @@ class RepairAndMaintenance extends Model
     protected function isRepair(): Attribute
     {
         return Attribute::make(
-            get: fn(string $value) => $value ? 'Repair' : 'Replacement'
+            get: fn(string $value) => array_search($value, $this::$isRepairValues)
         );
     }
 

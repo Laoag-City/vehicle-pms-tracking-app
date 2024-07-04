@@ -23,7 +23,7 @@
     <body>
         <div class="ui left mini vertical inverted labeled icon sidebar menu">
             @auth
-                <a id="user-icon-info" class="item" title="{{ request()->user()->name . " - " . request()->user()->role->role }}" href="#">
+                <a id="user-icon-info" class="item" title="{{ request()->user()->name . " - " . request()->user()->role->role }}">
                     <i class="user icon"></i>
                     User
                 </a>

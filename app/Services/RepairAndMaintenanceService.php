@@ -14,7 +14,7 @@ class RepairAndMaintenanceService
         $repairAndMaintenance->vehicle_id = $vehicle->id;
         $repairAndMaintenance->component_id = $validated['component'];
         $repairAndMaintenance->description = $validated['description'];
-        $repairAndMaintenance->is_repair = $validated['type'] == 'Repair' ? true : false;
+        $repairAndMaintenance->is_repair = $repairAndMaintenance::$isRepairValues[$validated['type']];
         $repairAndMaintenance->estimated_cost = $validated['estimated_cost'];
         $repairAndMaintenance->date_encoded = $validated['date_encoded'];
 
