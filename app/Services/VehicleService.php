@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Vehicle;
+use Illuminate\Database\Eloquent\Collection;
 
 class VehicleService
 {
@@ -11,7 +12,7 @@ class VehicleService
         
     }
 
-    public function vehicles($officeId = null, $classificationId = null, $makeId = null)
+    public function vehicles($officeId = null, $classificationId = null, $makeId = null): Collection
     {
         $vehicles = Vehicle::query();
 
@@ -74,5 +75,10 @@ class VehicleService
     public function loadOtherVehicleInfo(Vehicle $vehicle): Vehicle
     {
         return $vehicle->load('office', 'vehicleClassification', 'repairAndMaintenances.component', 'vehicleMake', 'year');
+    }
+
+    public function delete(Vehicle $vehicle): bool
+    {
+        return $vehicle->delete(); 
     }
 }

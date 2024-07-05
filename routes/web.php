@@ -21,6 +21,10 @@ Route::middleware('auth')->group(function() {
         ->middleware('can:update,vehicle')
         ->name('update_vehicle');
 
+    Route::delete('/vehicles/{vehicle}', [VehicleController::class, 'deleteVehicle'])
+        ->middleware('can:delete,vehicle')
+        ->name('delete_vehicle');
+
     Route::middleware('can:update,repairAndMaintenance')->scopeBindings()->group(function(){
         Route::get('/vehicles/{vehicle}/repair-maintenance/{repairAndMaintenance}', [RepairAndMaintenanceController::class, 'repairAndMaintenanceInfo'])
             ->name('repair_and_maintenance_info');

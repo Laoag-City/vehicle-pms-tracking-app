@@ -134,4 +134,13 @@ class VehicleController extends Controller
 
         return back()->with('success', 'Vehicle info updated successfully!');
     }
+
+    public function deleteVehicle(Vehicle $vehicle): RedirectResponse
+    {
+        $deleted = $this->vehicleService->delete($vehicle);
+
+        abort_if(!$deleted, 500);
+
+        return redirect(route('vehicles'));
+    }
 }

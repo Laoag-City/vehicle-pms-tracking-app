@@ -25,7 +25,7 @@
 
                 <div class="extra">
                     @can('delete', $vehicle)
-                        <a href="" class="ui right floated red basic mini button">
+                        <a class="ui right floated red basic mini button" data-id="{{ $vehicle->id }}" data-name="{{ $vehicle->completeVehicleName() }}" x-data @click="$dispatch('remove-clicked', $el.dataset)">
                             <i class="close icon"></i>
                             Remove
                         </a>

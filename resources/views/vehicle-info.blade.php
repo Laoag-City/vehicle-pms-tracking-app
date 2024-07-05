@@ -15,7 +15,7 @@
         @endcan
 
         @can('delete', $vehicle)
-            <a href="" class="ui right floated red basic mini button">
+            <a class="ui right floated red basic mini button" data-id="{{ $vehicle->id }}" data-name="{{ $vehicle->completeVehicleName() }}" x-data @click="$dispatch('remove-clicked', $el.dataset)">
                 <i class="close icon"></i>
                 Remove
             </a>
@@ -302,6 +302,15 @@
         </x-contents.table>
 
         <br>
+
+        @can('delete', $vehicle)
+            <x-forms.delete-modal
+                modal-header="Remove Vehicle"
+                modal-title="Are you sure you want to remove the selected vehicle?"
+                :url="route('delete_vehicle', ['vehicle' => 0])"
+                :url-param="0"
+            />
+        @endcan
     </div>
 
     @pushOnce('scripts')
