@@ -33,6 +33,11 @@ Route::middleware('auth')->group(function() {
             ->name('update_repair_and_maintenance');
     });
 
+    Route::delete('/vehicles/{vehicle}/repair-maintenance/{repairAndMaintenance}', [RepairAndMaintenanceController::class, 'deleteRepairAndMaintenance'])
+        ->scopeBindings()
+        ->middleware('can:delete,repairAndMaintenance')
+        ->name('delete_repair_and_maintenance');
+
     Route::middleware('can:create,App\Models\Vehicle')->group(function(){
         Route::get('/new-vehicle', [VehicleController::class, 'newVehicle'])
             ->name('new_vehicle');

@@ -42,6 +42,7 @@
 
             <x-contents.vehicle-items
                 :vehicles="$vehicles"
+                :modal-id="$modalId"
             />
 
             <div class="ui section divider"></div>
@@ -50,6 +51,7 @@
     </div>
 
     <x-forms.delete-modal
+        :modal-id="$modalId"
         modal-header="Remove Vehicle"
         modal-title="Are you sure you want to remove the selected vehicle?"
         :url="route('delete_vehicle', ['vehicle' => 0])"

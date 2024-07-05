@@ -1,3 +1,5 @@
+@use('Illuminate\Support\Str')
+
 <x-layout>
     <x-slot:title>Vehicle Info</x-slot>
 
@@ -15,7 +17,7 @@
         @endcan
 
         @can('delete', $vehicle)
-            <a class="ui right floated red basic mini button" data-id="{{ $vehicle->id }}" data-name="{{ $vehicle->completeVehicleName() }}" x-data @click="$dispatch('remove-clicked', $el.dataset)">
+            <a class="ui right floated red basic mini button" data-id="{{ $vehicle->id }}" data-name="{{ $vehicle->completeVehicleName() }}" x-data @click="$dispatch('{{ Str::of($vehicleModalId)->kebab() }}-clicked', $el.dataset)">
                 <i class="close icon"></i>
                 Remove
             </a>
@@ -291,7 +293,9 @@
                                     @endif
 
                                     @if($canDeleteRepairAndMaintenance)
-                                        <a class="item" href="">Remove</a>
+                                        <a class="item" data-id="{{ $item->id }}" data-name="{{ $item->description }}" x-data @click="$dispatch('{{ Str::of($repairModalId)->kebab() }}-clicked', $el.dataset)">
+                                            Remove
+                                        </a>
                                     @endif
                                 </x-actions.simple-dropdown>
                             </td>
@@ -305,12 +309,23 @@
 
         @can('delete', $vehicle)
             <x-forms.delete-modal
+                :modal-id="$vehicleModalId"
                 modal-header="Remove Vehicle"
                 modal-title="Are you sure you want to remove the selected vehicle?"
                 :url="route('delete_vehicle', ['vehicle' => 0])"
                 :url-param="0"
             />
         @endcan
+
+        @if($canDeleteRepairAndMaintenance)
+        <x-forms.delete-modal
+            :modal-id="$repairModalId"
+            modal-header="Remove Repair/Maintenance"
+            modal-title="Are you sure you want to remove the selected record?"
+            :url="route('delete_repair_and_maintenance', ['vehicle' => $vehicle->id, 'repairAndMaintenance' => 0])"
+            :url-param="0"
+        />
+        @endif
     </div>
 
     @pushOnce('scripts')

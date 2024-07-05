@@ -57,7 +57,8 @@ class VehicleController extends Controller
         return view('vehicles', [
             'canViewAnyVehicle' => $canViewAnyVehicle,
             'offices' => $offices,
-            'officeVehicles' => $vehicles->sortBy('office.id')->groupBy('office.name')
+            'officeVehicles' => $vehicles->sortBy('office.id')->groupBy('office.name'),
+            'modalId' => 'deleteModal'
         ]);
     }
 
@@ -117,7 +118,9 @@ class VehicleController extends Controller
                 'yearNow' => $yearNow,
                 'repairAndMaintenances' => $vehicle->repairAndMaintenances->sortByDesc('date_encoded'),
                 'canUpdateRepairAndMaintenance' => $canUpdateRepairAndMaintenance,
-                'canDeleteRepairAndMaintenance' => $canDeleteRepairAndMaintenance
+                'canDeleteRepairAndMaintenance' => $canDeleteRepairAndMaintenance,
+                'vehicleModalId' => 'vehicleModal',
+                'repairModalId' => 'repairModal'
             ]);
         }
 

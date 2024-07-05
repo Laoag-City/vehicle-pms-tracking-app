@@ -31,4 +31,9 @@ class RepairAndMaintenanceService
 
         return $repairAndMaintenance->save();
     }
+
+    public function delete(RepairAndMaintenance $repairAndMaintenance): bool
+    {
+        return $repairAndMaintenance->delete(); 
+    }
 }

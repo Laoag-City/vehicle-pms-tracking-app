@@ -59,4 +59,13 @@ class RepairAndMaintenanceController extends Controller
 
         return back()->with('success', 'Repair/Maintenance record updated successfully!');
     }
+
+    public function deleteRepairAndMaintenance(Vehicle $vehicle, RepairAndMaintenance $repairAndMaintenance): RedirectResponse
+    {
+        $deleted = $this->repairAndMaintenanceService->delete($repairAndMaintenance);
+
+        abort_if(!$deleted, 500);
+
+        return redirect(route('vehicle_info', ['vehicle' => $vehicle->id]));
+    }
 }

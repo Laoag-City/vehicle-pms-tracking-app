@@ -1,5 +1,8 @@
+@use('Illuminate\Support\Str')
+
 @props([
-    'vehicles' => []
+    'vehicles' => [],
+    'modalId'
 ])
 
 <div class="ui items">
@@ -25,7 +28,7 @@
 
                 <div class="extra">
                     @can('delete', $vehicle)
-                        <a class="ui right floated red basic mini button" data-id="{{ $vehicle->id }}" data-name="{{ $vehicle->completeVehicleName() }}" x-data @click="$dispatch('remove-clicked', $el.dataset)">
+                        <a class="ui right floated red basic mini button" data-id="{{ $vehicle->id }}" data-name="{{ $vehicle->completeVehicleName() }}" x-data @click="$dispatch('{{ Str::of($modalId)->kebab() }}-clicked', $el.dataset)">
                             <i class="close icon"></i>
                             Remove
                         </a>
