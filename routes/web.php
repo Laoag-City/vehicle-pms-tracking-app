@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\RepairAndMaintenanceController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehicleController;
 use Illuminate\Support\Facades\Route;
 
@@ -52,6 +53,20 @@ Route::middleware('auth')->group(function() {
 
         Route::post('/new-repair-maintenance/{vehicle}', [RepairAndMaintenanceController::class, 'addNewRepairAndMaintenance'])
             ->name('add_new_repair_and_maintenance');
+    });
+
+    Route::middleware('can:manages-users')->group(function(){
+        Route::get('/users', [UserController::class, 'showUserDashboard'])
+            ->name('users');
+    
+        Route::post('/users', [UserController::class, 'newUser'])
+            ->name('add_new_user');
+
+        Route::get('/users/{user}', [UserController::class, 'updateUser'])
+            ->name('update_user');
+
+        Route::delete('/users/{user}', [UserController::class, 'deleteUser'])
+            ->name('delete_user');
     });
 
     Route::post('/logout', [AuthenticationController::class, 'logOut']);

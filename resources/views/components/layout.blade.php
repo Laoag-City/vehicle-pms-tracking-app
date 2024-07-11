@@ -39,10 +39,18 @@
                 </a>
 
                 @can('create', App\Models\Vehicle::class)
-                <a class="item {{ $current_url == route('new_vehicle') ? 'active' : '' }}" href="{{ route('new_vehicle') }}">
-                    <i class="plus icon"></i>
-                    Add Vehicle
-                @endcan</a>
+                    <a class="item {{ $current_url == route('new_vehicle') ? 'active' : '' }}" href="{{ route('new_vehicle') }}">
+                        <i class="plus icon"></i>
+                        Add Vehicle
+                    </a>
+                @endcan
+
+                @can('manages-users')
+                    <a class="item {{ $current_url == route('users') ? 'active' : '' }}" href="{{ route('users') }}">
+                        <i class="user icon"></i>
+                        Manage Users
+                    </a>
+                @endcan
             @endauth
         </div>
 
