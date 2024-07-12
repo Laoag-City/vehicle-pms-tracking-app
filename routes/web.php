@@ -59,10 +59,13 @@ Route::middleware('auth')->group(function() {
         Route::get('/users', [UserController::class, 'showUserDashboard'])
             ->name('users');
     
-        Route::post('/users', [UserController::class, 'newUser'])
+        Route::post('/users', [UserController::class, 'addNewUser'])
             ->name('add_new_user');
 
-        Route::get('/users/{user}', [UserController::class, 'updateUser'])
+        Route::get('/users/{user}', [UserController::class, 'showEditUser'])
+            ->name('edit_user');
+
+        Route::put('/users/{user}', [UserController::class, 'updateUser'])
             ->name('update_user');
 
         Route::delete('/users/{user}', [UserController::class, 'deleteUser'])

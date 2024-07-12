@@ -28,11 +28,11 @@
                                     <i class="small bars icon"></i>
                                 </x-slot>
                                 
-                                <a class="item" href="{{ route('update_user', ['user' => $user->id]) }}">
+                                <a class="item" href="{{ route('edit_user', ['user' => $user->id]) }}">
                                     Edit
                                 </a>
 
-                                <a class="item" data-id="{{ $user->id }}" data-name="{{ $user->name }}" x-data @click="$dispatch('removeUserModal-clicked', $el.dataset)">
+                                <a class="item" data-id="{{ $user->id }}" data-name="{{ $user->name }}" x-data @click="$dispatch('{{ Str::of($modalId)->kebab() }}-clicked', $el.dataset)">
                                     Remove
                                 </a>
                             </x-actions.simple-dropdown>
@@ -119,14 +119,14 @@
 
             <div class="field">
                 <x-actions.button class="small blue fluid" type="submit">
-                    Add Vehicle
+                    Add User
                 </x-actions.button>
             </div>
         </form>
     </div>
 
     <x-forms.delete-modal
-        modal-id="removeUserModal"
+        :modal-id="$modalId"
         modal-header="Remove User"
         modal-title="Are you sure you want to remove the selected user?"
         :url="route('delete_user', ['user' => 0])"
