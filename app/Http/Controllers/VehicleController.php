@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AddNewVehicleRequest;
 use App\Http\Requests\EditVehicleInfoRequest;
+use App\Http\Requests\OfficeFilterRequest;
 use App\Models\RepairAndMaintenance;
 use App\Models\Vehicle;
 use App\Services\OfficeService;
@@ -12,7 +13,6 @@ use App\Services\VehicleMakeService;
 use App\Services\VehicleService;
 use App\Services\YearService;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -41,9 +41,7 @@ class VehicleController extends Controller
 
             else
             {
-                Validator::make($request->all(), [
-                    'office_filter' => 'required|exists:offices,id'
-                ])->validate();
+                app(OfficeFilterRequest::class);
 
                 $office = $offices->where('id', $request->office_filter)->first();
 

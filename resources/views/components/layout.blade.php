@@ -17,6 +17,7 @@
         <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.min.css">
         <script src="/semantic/dist/semantic.min.js" defer></script>
 
+        {{ $css ?? '' }}
         @stack('scripts')
     </head>
 
@@ -36,6 +37,11 @@
                 <a class="item {{ $current_url == route('vehicles') ? 'active' : '' }}" href="{{ route('vehicles') }}">
                     <i class="car icon"></i>
                     Vehicles
+                </a>
+
+                <a class="item {{ $current_url == route('repair-maintenance') ? 'active' : '' }}" href="{{ route('repair-maintenance') }}">
+                    <i class="table icon"></i>
+                    Repairs/Maintenances
                 </a>
 
                 @can('create', App\Models\Vehicle::class)

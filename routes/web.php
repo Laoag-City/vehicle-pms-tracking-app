@@ -39,6 +39,8 @@ Route::middleware('auth')->group(function() {
         ->middleware('can:delete,repairAndMaintenance')
         ->name('delete_repair_and_maintenance');
 
+    Route::get('repair-maintenance', [RepairAndMaintenanceController::class, 'getRepairAndMaintenances'])->name('repair-maintenance');
+
     Route::middleware('can:create,App\Models\Vehicle')->group(function(){
         Route::get('/new-vehicle', [VehicleController::class, 'newVehicle'])
             ->name('new_vehicle');

@@ -239,7 +239,7 @@
     <div class="sixteen wide centered column">
         <br>
 
-        <div class="ui large horizontal section divider">Repair and Maintenances</div>
+        <div class="ui large horizontal section divider">Repairs and Maintenances</div>
 
         <div class="ui two statistics" style="margin: 20px 0 20px 0;">
             <div class="ui mini statistic">

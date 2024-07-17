@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AddRepairAndMaintenanceRequest;
 use App\Http\Requests\EditRepairAndMaintenanceInfoRequest;
+use App\Http\Requests\OfficeFilterRequest;
 use App\Models\RepairAndMaintenance;
 use App\Models\Vehicle;
 use App\Services\ComponentService;
+use App\Services\OfficeService;
 use App\Services\RepairAndMaintenanceService;
+use App\Services\VehicleService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -17,6 +20,37 @@ class RepairAndMaintenanceController extends Controller
     public function __construct(private RepairAndMaintenanceService $repairAndMaintenanceService, private ComponentService $componentService)
     {
 
+    }
+
+    public function getRepairAndMaintenances(Request $request, OfficeService $officeService, VehicleService $vehicleService): View
+    {
+        //codes below are similar to VehicleController's getVehicles()
+        $offices = collect();
+        $vehicles = collect();
+        $canViewAnyVehicle = $request->user()->can('viewAny', Vehicle::class);
+
+        if($canViewAnyVehicle)
+        {
+            $offices = $officeService->offices();
+
+            if($request->office_filter != null)
+            {
+                app(OfficeFilterRequest::class);
+
+                $office = $offices->where('id', $request->office_filter)->first();
+
+                $vehicles = $vehicleService->vehicles($office->id);
+            }
+        }
+
+        else
+            $vehicles = $vehicleService->vehicles($request->user()->office_id);
+
+        return view('repairs-maintenances', [
+            'canViewAnyVehicle' => $canViewAnyVehicle,
+            'offices' => $offices,
+            'vehicles' => $vehicles
+        ]);
     }
 
     public function newRepairAndMaintenance(Vehicle $vehicle): View
