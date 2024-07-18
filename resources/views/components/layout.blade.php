@@ -62,7 +62,7 @@
 
         <div class="pusher">
             <div class="ui container">
-                <div class="ui large attached stackable menu">
+                <header id="headerMenu" class="ui large attached stackable menu">
                     @auth
                         <div class="item">
                             <x-actions.button 
@@ -109,15 +109,15 @@
                             </form>
                         </div>
                     @endauth
-                </div>
+                </header>
 
-                <div id="content" class="ui padded attached segment">
+                <main id="content" class="ui padded attached segment">
                     <div class="ui stackable grid container">
                         {{ $slot }}
                     </div>
-                </div>
+                </main>
 
-                <div class="ui bottom attached mini borderless menu">
+                <footer id="footer" class="ui bottom attached mini borderless menu">
                     <div class="item">
                         <i class="copyright outline icon"></i>
                         {{ date('Y', strtotime('now')) }}. All rights reserved.
@@ -128,7 +128,7 @@
                             <i class="code icon"></i>
                         </div>
                     </div>
-                </div>
+                </footer>
             </div>
         </div>
     </body>
