@@ -46,7 +46,7 @@
                     />
 
                     <div class="six wide field" style="	align-self: flex-end;">
-                        <x-actions.button class="small blue inverted" x-on:click="switchVehicleMakeField(0)">
+                        <x-actions.button class="small blue inverted fluid" x-on:click="switchVehicleMakeField(0)">
                             Switch to New Vehicle Make
                         </x-actions.button>
                     </div>
@@ -65,7 +65,7 @@
                     />
 
                     <div class="six wide field" style="	align-self: flex-end;">
-                        <x-actions.button class="small blue inverted" x-on:click="switchVehicleMakeField(1)">
+                        <x-actions.button class="small blue inverted fluid" x-on:click="switchVehicleMakeField(1)">
                             Switch to Vehicle Make List
                         </x-actions.button>
                     </div>

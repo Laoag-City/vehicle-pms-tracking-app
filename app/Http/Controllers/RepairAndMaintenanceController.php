@@ -31,7 +31,7 @@ class RepairAndMaintenanceController extends Controller
 
         if($canViewAnyVehicle)
         {
-            $offices = $officeService->offices();
+            $offices = $officeService->offices()->sortBy('name');
 
             if($request->office_filter != null)
             {
@@ -55,7 +55,7 @@ class RepairAndMaintenanceController extends Controller
 
     public function newRepairAndMaintenance(Vehicle $vehicle): View
     {
-        $components = $this->componentService->components();
+        $components = $this->componentService->components()->sortBy('component');
 
         return view('new-repair-maintenance', [
             'vehicle' => $vehicle,
@@ -75,7 +75,7 @@ class RepairAndMaintenanceController extends Controller
 
     public function repairAndMaintenanceInfo(Vehicle $vehicle, RepairAndMaintenance $repairAndMaintenance): View
     {
-        $components = $this->componentService->components();
+        $components = $this->componentService->components()->sortBy('component');
 
         return view('edit-repair-maintenance', [
             'vehicle' => $vehicle,

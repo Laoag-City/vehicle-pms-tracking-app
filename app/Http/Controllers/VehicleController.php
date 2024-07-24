@@ -34,7 +34,7 @@ class VehicleController extends Controller
 
         if($canViewAnyVehicle)
         {
-            $offices = $this->officeService->offices();
+            $offices = $this->officeService->offices()->sortBy('name');
 
             if(!$request->office_filter)
                 $vehicles = $this->vehicleService->vehicles();
@@ -62,9 +62,9 @@ class VehicleController extends Controller
 
     public function newVehicle(): View
     {
-        $vehicleClassifications = $this->vehicleClassificationService->vehicleClassifications();
-        $vehicleMakes = $this->vehicleMakeService->vehicleMakes();
-        $offices = $this->officeService->offices();
+        $vehicleClassifications = $this->vehicleClassificationService->vehicleClassifications()->sortBy('classification');
+        $vehicleMakes = $this->vehicleMakeService->vehicleMakes()->sortBy('make');
+        $offices = $this->officeService->offices()->sortBy('name');
         $yearNow = $this->yearService->getYear()->year;
 
         return view('new-vehicle', [
@@ -92,9 +92,9 @@ class VehicleController extends Controller
 
             if($request->user()->can('update', $vehicle))
             {
-                $vehicleClassifications = $this->vehicleClassificationService->vehicleClassifications();
-                $vehicleMakes = $this->vehicleMakeService->vehicleMakes();
-                $offices = $this->officeService->offices();
+                $vehicleClassifications = $this->vehicleClassificationService->vehicleClassifications()->sortBy('classification');
+                $vehicleMakes = $this->vehicleMakeService->vehicleMakes()->sortBy('make');
+                $offices = $this->officeService->offices()->sortBy('name');
                 $yearNow = $this->yearService->getYear()->year;
             }
 
