@@ -202,7 +202,7 @@ class DatabaseSeeder extends Seeder
             ['make' => 'Motorstar'],
             ['make' => 'Racal'],
             ['make' => 'Toyota'],
-            ['make' => 'Mistubishi'],
+            ['make' => 'Mitsubishi'],
             ['make' => 'Ford'],
             ['make' => 'Kia'],
             ['make' => 'Isuzu'],

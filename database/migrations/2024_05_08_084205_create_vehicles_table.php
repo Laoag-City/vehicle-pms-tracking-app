@@ -30,7 +30,7 @@ return new class extends Migration
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
             $table->string('model');
-            $table->string('plate_number', 8)->unique();
+            $table->string('plate_number', 20)->unique();
             $table->timestamps();
         });
     }

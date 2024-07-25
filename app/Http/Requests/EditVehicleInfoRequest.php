@@ -41,7 +41,7 @@ class EditVehicleInfoRequest extends FormRequest
                                 'required', 
                                 'string', 
                                 'min:1', 
-                                'max:8', 
+                                'max:20', 
                                 new AlphaNumSpace,
                                 Rule::unique('vehicles', 'plate_number')->ignore($vehicle->id)
                             ]
