@@ -33,7 +33,7 @@ class AddNewVehicleRequest extends FormRequest
             'office_issued_to' => 'bail|required|exists:offices,id',
             'model' => ['bail', 'required', 'string', new AlphaNumDashSpaceDot],
             'year_model' => "bail|required|integer|min:1950|max:$yearNow",
-            'plate_number' => ['bail', 'required', 'string', 'min:1', 'max:20', new AlphaNumSpace,'unique:vehicles,plate_number']
+            'plate_number' => ['bail', 'required', 'string', 'min:1', 'max:10', new AlphaNumSpace,'unique:vehicles,plate_number']
         ];
     }
 }

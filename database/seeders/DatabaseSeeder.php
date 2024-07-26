@@ -83,25 +83,25 @@ class DatabaseSeeder extends Seeder
 
             ['name' => 'Civil Security Unit', 'abbr' => 'CSU'],
 
-        	['name' => 'Administrative and Records Division', 'abbr' => 'ARD'],
+            ['name' => 'Administrative and Records Division', 'abbr' => 'ARD'],
 
-        	['name' => 'Internal Control Division', 'abbr' => 'ICD'],
+            ['name' => 'Internal Control Division', 'abbr' => 'ICD'],
 
-        	['name' => 'Permits and Licenses Division', 'abbr' => 'PLD'],
+            ['name' => 'Permits and Licenses Division', 'abbr' => 'PLD'],
 
-        	['name' => 'Cooperative Services', 'abbr' => 'COOP'],
+            ['name' => 'Cooperative Services', 'abbr' => 'COOP'],
 
-        	['name' => 'City Disaster Risk Reduction and Management Office', 'abbr' => 'CDRRMO'],
+            ['name' => 'City Disaster Risk Reduction and Management Office', 'abbr' => 'CDRRMO'],
 
-        	['name' => 'Department of Public Safety', 'abbr' => 'DPS'],
+            ['name' => 'Department of Public Safety', 'abbr' => 'DPS'],
 
-        	['name' => 'Tourism Office', 'abbr' => 'TOURISM'],
+            ['name' => 'Tourism Office', 'abbr' => 'TOURISM'],
 
-        	['name' => 'City Library', 'abbr' => 'LIB'],
+            ['name' => 'City Library', 'abbr' => 'LIB'],
 
             ['name' => 'SP Legislative', 'abbr' => 'SP-LEGIS'],
 
-        	['name' => 'Population Services', 'abbr' => 'POPCOM'],
+            ['name' => 'Population Services', 'abbr' => 'POPCOM'],
         ]);
 
         $offices = Office::all();
@@ -127,7 +127,7 @@ class DatabaseSeeder extends Seeder
             [
                 'office_id' => $offices->where('abbr', 'CA')->first()->id,
                 'role_id' => $executive_role_id,
-                'name' => 'City Administator',
+                'name' => 'City Administrator',
                 'username' => 'ca_executive',
                 'password' => bcrypt('ca_executive')
             ]
@@ -189,6 +189,7 @@ class DatabaseSeeder extends Seeder
             ['classification' => 'Boom Truck'],
             ['classification' => 'Dump Truck'],
             ['classification' => 'Garbage Truck'],
+            ['classification' => 'Payloader']
         ]);
 
         VehicleMake::insert([
