@@ -1,7 +1,7 @@
 @props([
-	'label',
-    'name',
-    'values',
+	'label' => '',
+    'name' => '',
+    'values' => [],
 	'checked' => null,
 	'error' => "",
 	'required' => false,

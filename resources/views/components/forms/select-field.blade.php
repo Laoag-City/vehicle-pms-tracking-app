@@ -1,6 +1,6 @@
 @props([
-    'label',
-    'name',
+    'label' => '',
+    'name' => '',
     'options',
     'selected' => null,
     'error' => "",
