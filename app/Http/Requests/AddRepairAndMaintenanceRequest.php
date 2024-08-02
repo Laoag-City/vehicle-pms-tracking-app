@@ -23,10 +23,16 @@ class AddRepairAndMaintenanceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'component' => 'bail|required|exists:components,id',
-            'description' => 'bail|required|string|min:3,120',
-            'type' => 'bail|required|in:' . implode(',', array_keys(RepairAndMaintenance::$isRepairValues)),
-            'estimated_cost' => 'bail|required|numeric|regex:/^[0-9]{1,8}+(\.[0-9]{1,2})?$/|between:1,99999999',
+            'record.*' => 'bail|required|array|min:1|max:30',
+
+            'record.*.component' => 'bail|required|exists:components,id',
+
+            'record.*.description' => 'bail|required|string|min:3|max:120',
+
+            'record.*.type' => 'bail|required|in:' . implode(',', array_keys(RepairAndMaintenance::$isRepairValues)),
+
+            'record.*.estimated_cost' => 'bail|required|numeric|regex:/^[0-9]{1,8}+(\.[0-9]{1,2})?$/|between:1,99999999',
+
             'date_encoded' => 'bail|required|date|before_or_equal:now'
         ];
     }
