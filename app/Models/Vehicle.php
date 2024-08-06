@@ -47,6 +47,8 @@ class Vehicle extends Model
 
     public function completeVehicleName(): string
     {
-        return "{$this->year->year} {$this->vehicleMake->make} {$this->model}";
+        $year = $this->year ? $this->year->year : '';
+        
+        return "{$year} {$this->vehicleMake->make} {$this->model}";
     }
 }

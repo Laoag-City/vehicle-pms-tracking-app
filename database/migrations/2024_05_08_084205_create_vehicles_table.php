@@ -26,11 +26,13 @@ return new class extends Migration
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
             $table->foreignId('year_id')
+                ->nullable()
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
             $table->string('model');
             $table->string('plate_number', 10)->unique();
+            $table->string('serial_number', 30)->unique();
             $table->timestamps();
         });
     }

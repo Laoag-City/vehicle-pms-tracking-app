@@ -189,7 +189,15 @@ class DatabaseSeeder extends Seeder
             ['classification' => 'Boom Truck'],
             ['classification' => 'Dump Truck'],
             ['classification' => 'Garbage Truck'],
-            ['classification' => 'Payloader']
+            ['classification' => 'Payloader'],
+            ['classification' => 'Self-loading Truck'],
+            ['classification' => 'Backhoe'],
+            ['classification' => 'Bulldozer'],
+            ['classification' => 'Road Grader'],
+            ['classification' => 'Compactor'],
+            ['classification' => 'Rescue Truck'],
+            ['classification' => 'Ambulance'],
+            ['classification' => 'Non-vehicle Type'],
         ]);
 
         VehicleMake::insert([

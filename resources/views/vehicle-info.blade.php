@@ -178,7 +178,7 @@
                         class="three wide"
                         label="Year Model"
                         name="year"
-                        :value="$vehicle->year->year"
+                        :value="$yearModel"
                         :readonly="true"
                     />
 
@@ -208,9 +208,8 @@
                         label="Year Model"
                         name="year_model"
                         type="number"
-                        :value="old('year_model') ? old('year_model') : $vehicle->year->year"
+                        :value="old('year_model') ? old('year_model') : $yearModel"
                         :error="$errors->first('year_model')"
-                        :required="true"
                         min="1950"
                         :max="$yearNow"
                     />

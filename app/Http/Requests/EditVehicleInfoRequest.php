@@ -10,6 +10,10 @@ use Illuminate\Validation\Rule;
 
 class EditVehicleInfoRequest extends FormRequest
 {
+    public function __construct(private Vehicle $vehicle)
+    {
+        
+    }
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -23,7 +27,7 @@ class EditVehicleInfoRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(Vehicle $vehicle): array
+    public function rules(): array
     {
         $yearNow = date('Y', strtotime('now'));
 
@@ -35,7 +39,7 @@ class EditVehicleInfoRequest extends FormRequest
             'show_make_list' => 'bail|required|boolean',
             'office_issued_to' => 'bail|required|exists:offices,id',
             'model' => ['bail', 'required', 'string', new AlphaNumDashSpaceDot],
-            'year_model' => "bail|required|integer|min:1950|max:$yearNow",
+            'year_model' => "bail|nullable|integer|min:1950|max:$yearNow",
             'plate_number' => [
                                 'bail',
                                 'required', 
@@ -43,7 +47,7 @@ class EditVehicleInfoRequest extends FormRequest
                                 'min:1', 
                                 'max:10', 
                                 new AlphaNumSpace,
-                                Rule::unique('vehicles', 'plate_number')->ignore($vehicle->id)
+                                Rule::unique('vehicles', 'plate_number')->ignore($this->vehicle->id)
                             ]
         ];
     }

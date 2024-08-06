@@ -98,7 +98,6 @@
                     type="number"
                     :value="old('year_model')"
                     :error="$errors->first('year_model')"
-                    :required="true"
                     min="1950"
                     :max="$yearNow"
                 />

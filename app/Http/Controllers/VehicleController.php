@@ -118,7 +118,8 @@ class VehicleController extends Controller
                 'canUpdateRepairAndMaintenance' => $canUpdateRepairAndMaintenance,
                 'canDeleteRepairAndMaintenance' => $canDeleteRepairAndMaintenance,
                 'vehicleModalId' => 'vehicleModal',
-                'repairModalId' => 'repairModal'
+                'repairModalId' => 'repairModal',
+                'yearModel' => $vehicle->year ? $vehicle->year->year : ''
             ]);
         }
 

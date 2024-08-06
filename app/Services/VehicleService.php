@@ -31,7 +31,10 @@ class VehicleService
     
     public function new($validatedData): bool
     {
-        $year = $this->yearService->getYear($validatedData['year_model']);
+        $yearId = null;
+        
+        if($validatedData['year_model'] != null)
+            $yearId = $this->yearService->getYear($validatedData['year_model'])->id;
 
         if((bool)$validatedData['show_make_list'])
             $vehicle_make = $validatedData['vehicle_make'];
@@ -43,7 +46,7 @@ class VehicleService
         $vehicle->office_id = $validatedData['office_issued_to'];
         $vehicle->vehicle_classification_id = $validatedData['vehicle_classification'];
         $vehicle->vehicle_make_id = $vehicle_make;
-        $vehicle->year_id = $year->id;
+        $vehicle->year_id = $yearId;
         $vehicle->model = $validatedData['model'];
         $vehicle->plate_number = $validatedData['plate_number'];
 
@@ -54,8 +57,10 @@ class VehicleService
     public function edit(Vehicle $vehicle, $validatedData): bool
     {
         //strike two of the Rule-of-three in programming. A third duplication means it's time for abstraction
-
-        $year = $this->yearService->getYear($validatedData['year_model']);
+        $yearId = null;
+        
+        if($validatedData['year_model'] != null)
+            $yearId = $this->yearService->getYear($validatedData['year_model'])->id;
 
         if((bool)$validatedData['show_make_list'])
             $vehicle_make = $validatedData['vehicle_make'];
@@ -65,7 +70,7 @@ class VehicleService
         $vehicle->office_id = $validatedData['office_issued_to'];
         $vehicle->vehicle_classification_id = $validatedData['vehicle_classification'];
         $vehicle->vehicle_make_id = $vehicle_make;
-        $vehicle->year_id = $year->id;
+        $vehicle->year_id = $yearId;
         $vehicle->model = $validatedData['model'];
         $vehicle->plate_number = $validatedData['plate_number'];
 
