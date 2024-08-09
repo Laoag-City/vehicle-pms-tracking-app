@@ -112,6 +112,14 @@
                 />
             </div>
 
+            <x-forms.text-field
+                label="Serial Number"
+                name="serial_number"
+                :value="old('serial_number')"
+                :error="$errors->first('serial_number')"
+                :required="true"
+            />
+
             <div class="field">
                 <x-actions.button class="small blue fluid" type="submit">
                     Add Vehicle

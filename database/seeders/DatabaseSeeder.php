@@ -102,6 +102,10 @@ class DatabaseSeeder extends Seeder
             ['name' => 'SP Legislative', 'abbr' => 'SP-LEGIS'],
 
             ['name' => 'Population Services', 'abbr' => 'POPCOM'],
+
+            ['name' => 'Philippine National Police', 'abbr' => 'PNP'],
+
+            ['name' => 'Bureau of Fire Protection', 'abbr' => 'BFP']
         ]);
 
         $offices = Office::all();
@@ -197,7 +201,9 @@ class DatabaseSeeder extends Seeder
             ['classification' => 'Compactor'],
             ['classification' => 'Rescue Truck'],
             ['classification' => 'Ambulance'],
-            ['classification' => 'Non-vehicle Type'],
+            ['classification' => 'Water Truck'],
+            ['classification' => 'Fire Truck'],
+            ['classification' => 'Non-vehicle Type']
         ]);
 
         VehicleMake::insert([

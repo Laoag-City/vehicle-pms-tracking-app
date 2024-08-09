@@ -16,6 +16,7 @@
                 <div class="meta">
                     <span>Classification: <b>{{ $vehicle->vehicleClassification->classification }}</b></span>
                     <span>Plate Number: <b>{{ $vehicle->plate_number }}</b></span>
+                    <span>Serial Number: <b>{{ $vehicle->serial_number }}</b></span>
                 </div>
 
                 <div class="description">

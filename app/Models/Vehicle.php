@@ -45,6 +45,13 @@ class Vehicle extends Model
         );
     }
 
+    protected function serialNumber(): Attribute
+    {
+        return Attribute::make(
+            set: fn (string $value) => Str::upper($value)
+        );
+    }
+
     public function completeVehicleName(): string
     {
         $year = $this->year ? $this->year->year : '';

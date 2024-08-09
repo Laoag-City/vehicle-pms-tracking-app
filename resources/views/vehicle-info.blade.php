@@ -224,6 +224,27 @@
                     />
                 </div>
             </template>
+            {{-- --}}
+
+            {{--Office--}}
+            <template x-if="!editMode">
+                <x-forms.text-field
+                    label="Serial Number"
+                    name="serial_number"
+                    :value="$vehicle->serial_number"
+                    :readonly="true"
+                />
+            </template>
+
+            <template x-if="editMode">
+                <x-forms.text-field
+                    label="Serial Number"
+                    name="serial_number"
+                    :value="old('serial_number') ? old('serial_number') : $vehicle->serial_number"
+                    :error="$errors->first('serial_number')"
+                    :required="true"
+                />
+            </template>
 
             <template x-if="editMode">
                 <div class="field">

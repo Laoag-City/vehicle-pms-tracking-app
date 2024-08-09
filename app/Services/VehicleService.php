@@ -49,6 +49,7 @@ class VehicleService
         $vehicle->year_id = $yearId;
         $vehicle->model = $validatedData['model'];
         $vehicle->plate_number = $validatedData['plate_number'];
+        $vehicle->serial_number = $validatedData['serial_number'];
 
         return $vehicle->save();
     }
@@ -73,6 +74,7 @@ class VehicleService
         $vehicle->year_id = $yearId;
         $vehicle->model = $validatedData['model'];
         $vehicle->plate_number = $validatedData['plate_number'];
+        $vehicle->serial_number = $validatedData['serial_number'];
 
         return $vehicle->save();
     }

@@ -35,7 +35,7 @@ class EditVehicleInfoRequest extends FormRequest
             'edit_mode' => 'bail|required|accepted',
             'vehicle_classification' => 'bail|required|exists:vehicle_classifications,id',
             'vehicle_make' => 'bail|required_if_accepted:show_make_list|exists:vehicle_makes,id',
-            'new_vehicle_make' => 'bail|required_if_declined:show_make_list|alpha:ascii|min:2|max:50|unique:vehicle_makes,make',
+            'new_vehicle_make' => ['bail', 'required_if_declined:show_make_list', new AlphaNumSpace, 'min:2', 'max:50', 'unique:vehicle_makes,make'],
             'show_make_list' => 'bail|required|boolean',
             'office_issued_to' => 'bail|required|exists:offices,id',
             'model' => ['bail', 'required', 'string', new AlphaNumDashSpaceDot],
@@ -45,9 +45,18 @@ class EditVehicleInfoRequest extends FormRequest
                                 'required', 
                                 'string', 
                                 'min:1', 
-                                'max:10', 
+                                'max:20', 
                                 new AlphaNumSpace,
                                 Rule::unique('vehicles', 'plate_number')->ignore($this->vehicle->id)
+            ],
+            'serial_number' => [
+                                'bail',
+                                'required', 
+                                'string', 
+                                'min:1', 
+                                'max:30', 
+                                new AlphaNumDashSpaceDot,
+                                Rule::unique('vehicles', 'serial_number')->ignore($this->vehicle->id)
                             ]
         ];
     }

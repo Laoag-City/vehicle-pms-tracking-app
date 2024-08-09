@@ -12,7 +12,15 @@
         @endif
 
         @foreach($officeVehicles as $office => $vehicles)
-            <h2 class="ui header">{{ $office }}</h2>
+            <h2 class="ui header">
+                {{ $office }}
+
+                @php
+                    $count = $vehicles->count();
+                @endphp
+
+                <div class="sub header">{{ $count . ($count > 1 ? ' records' : ' record') }}</div>
+            </h2>
 
             <x-contents.vehicle-items
                 :vehicles="$vehicles"
