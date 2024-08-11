@@ -8,6 +8,7 @@ use App\Http\Requests\OfficeFilterRequest;
 use App\Models\RepairAndMaintenance;
 use App\Models\Vehicle;
 use App\Services\OfficeService;
+use App\Services\RepairAndMaintenanceService;
 use App\Services\VehicleClassificationService;
 use App\Services\VehicleMakeService;
 use App\Services\VehicleService;
@@ -22,7 +23,8 @@ class VehicleController extends Controller
                                 private VehicleClassificationService $vehicleClassificationService, 
                                 private VehicleMakeService $vehicleMakeService, 
                                 private OfficeService $officeService,
-                                private YearService $yearService)
+                                private YearService $yearService,
+                                private RepairAndMaintenanceService $repairAndMaintenanceService)
     {
 
     }
@@ -114,7 +116,7 @@ class VehicleController extends Controller
                 'vehicleMakes' => $vehicleMakes,
                 'offices' => $offices,
                 'yearNow' => $yearNow,
-                'repairAndMaintenances' => $vehicle->repairAndMaintenances->sortByDesc('date_encoded'),
+                'repairAndMaintenances' => $this->repairAndMaintenanceService->getPaginatedRecords($vehicle, 150),
                 'canUpdateRepairAndMaintenance' => $canUpdateRepairAndMaintenance,
                 'canDeleteRepairAndMaintenance' => $canDeleteRepairAndMaintenance,
                 'vehicleModalId' => 'vehicleModal',

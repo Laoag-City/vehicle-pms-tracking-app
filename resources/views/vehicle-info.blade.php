@@ -265,7 +265,7 @@
             <div class="ui mini statistic">
                 <div class="value">
                     <i class="money bill alternate outline icon"></i>
-                    {{ number_format($repairAndMaintenances->sum('estimated_cost'), 2) }}
+                    {{ number_format($vehicle->repairAndMaintenances->sum('estimated_cost'), 2) }}
                 </div>
                 <div class="label">Total Estimated Cost</div>
             </div>
@@ -273,7 +273,7 @@
             <div class="ui mini statistic">
                 <div class="value">
                     <i class="ul list icon"></i>
-                    {{ $repairAndMaintenances->count() }}
+                    {{ $vehicle->repairAndMaintenances->count() }}
                 </div>
                 <div class="label">Records</div>
             </div>
@@ -324,6 +324,8 @@
                 @endforeach
             </x-slot>
         </x-contents.table>
+
+        {{ $repairAndMaintenances->links('vendor.pagination.semantic-ui') }}
 
         <br>
 

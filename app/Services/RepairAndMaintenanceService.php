@@ -37,6 +37,13 @@ class RepairAndMaintenanceService
         return $repairAndMaintenance->save();
     }
 
+    public function getPaginatedRecords(Vehicle $vehicle, $perPage)
+    {
+        return RepairAndMaintenance::where('vehicle_id', $vehicle->id)
+                                    ->orderBy('date_encoded', 'desc')
+                                    ->paginate($perPage);
+    }
+
     public function delete(RepairAndMaintenance $repairAndMaintenance): bool
     {
         return $repairAndMaintenance->delete(); 
